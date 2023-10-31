@@ -1,2 +1,2 @@
 # Topicos-RG
-Repositorio con los cálculos de Tópicos en Relatividad General.
+Repositorio con los cálculos semanales del ramo: Tópicos en Relatividad General (2023-02).
