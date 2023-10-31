@@ -1,0 +1,314 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsfonts,amsmath,amssymb,float, amsthm,mathrsfs}  
+\usepackage[right=4.5cm,left=2cm,top=3cm,bottom=3cm,headsep= 0.7cm,footskip=0.5cm]{geometry}
+\usepackage{enumerate}
+\usepackage{wrapfig} 
+\usepackage[rflt]{floatflt} 
+\usepackage{framed}
+%\usepackage[most]{tcolorbox}
+\usepackage[dvipsnames]{xcolor}
+\colorlet{shadecolor}{green!20}
+\setlength\FrameSep{0.5ex}
+\usepackage{thmtools}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{listings} 
+\usepackage{pstricks, caption}
+\usepackage[colorlinks]{hyperref}
+\usepackage{csquotes}
+\usepackage{fullpage}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\tdplotsetmaincoords{80}{70}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows,babel}
+\usepackage[font=small]{caption}
+\usepackage{scalerel} %\scaleto{text}{size}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+\usepackage{comment}
+\usepackage{marginnote}
+\usepackage{tensor}
+\usepackage{cleveref}
+\newcommand{\dbar}{\mathchar'26\mkern-12mu d}
+\renewcommand*{\marginnotevadjust}{-0.1cm}
+\renewcommand*{\marginfont}{\footnotesize}
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-14.49998pt}
+\setlength{\headsep}{15pt}
+\setlength{\footskip}{14.49998pt}
+\decimalpoint
+\newcommand{\grad}{^\circ}
+\newlength{\drop}
+\DeclareMathOperator{\sign}{sgn}
+\DeclareMathOperator{\Log}{Log}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\let\cancelorigcolor\CancelColor% Just for conveniency...
+
+\newcommand{\CancelTo}[3][]{%
+  \ifblank{#1}{}{%
+    \renewcommand{\CancelColor}{#1}%
+  }
+  \cancelto{#2}{#3}% 
+}
+
+
+\begin{document}
+
+\pagestyle{plain}
+
+\begin{flushleft}\vspace{-2cm}
+Departamento de Física \\
+Facultad de Cs. Físicas y Matemáticas\\
+Universidad de Concepción
+\end{flushleft}
+
+\begin{flushright}\vspace{-1.5cm}
+\textbf{Tópicos en Relatividad General} 
+\end{flushright}
+
+\rule{\linewidth}{0.1mm}
+
+\begin{center}
+\textbf{\LARGE Semana 2}
+\end{center}
+
+\begin{flushleft}
+\textbf{Nombre:} Alejandro Saavedra San Martín. \\
+\textbf{Profesor:} Guillermo Rubilar Alegría.
+\end{flushleft}
+
+La métrica de Schwarzschild exterior, en las coordenadas de curvatura $x^{\mu} = (ct,r,\theta,\varphi)$, toma la forma
+\colorlet{shadecolor}{red!20}
+\begin{shaded}
+\begin{equation} \label{eq:Scwarzschild-metric}
+    ds^2 = \left( 1 - \frac{2m}{r}\right) c^2 dt^2 - \frac{dr^2}{\left( 1- \frac{2m}{r} \right)} - r^2 \left[ d\theta^2 + \sin^2 \theta d\varphi^2 \right], \quad r > 2m.
+\end{equation}
+    
+\end{shaded}
+
+Las componentes no nulas de los símbolos de Christoffel son:
+\begin{align}
+    \Gamma\indices{^0_{01}} &= \frac{m}{r(r-2m)}, \quad \Gamma\indices{^1_{00}} = \frac{(r-2m)m}{r^3}, \quad \Gamma\indices{^1_{11}} = - \frac{m}{r(r-2m)}, \\
+    \Gamma\indices{^1_{22}} &= - (r-2m), \quad \Gamma\indices{^1_{33}} = - (r-2m) \sin^2\theta, \quad \Gamma\indices{^2_{12}} = \frac{1}{r}, \\
+    \Gamma\indices{^2_{33}} &= - \sin\theta \cos\theta, \quad \Gamma\indices{^3_{13}} = \frac{1}{r}, \quad \Gamma\indices{^3_{23}} = \frac{\cos\theta}{\sin\theta}.   
+\end{align}
+
+Ver código (--)
+
+\section{Geodésicas tipo tiempo} 
+
+Si parametrizamos las geodésicas usando el tiempo propio $\tau$ (parámetro afín), $x^{\mu} = x^{\mu}(\tau)$, la ecuación de la geodésica toma la forma:
+\begin{equation}
+    \frac{d^2 x^{\mu}}{d\tau^2} + \Gamma\indices{^\mu_{\nu \lambda}} \frac{dx^{\nu}}{d\tau} \frac{dx^{\lambda}}{d\tau} = 0.
+\end{equation}
+
+Para la componente $\mu = 0$, la ecuación nos queda
+\begin{align}
+\frac{d^2 x^{0}}{d\tau^2} + \Gamma\indices{^0_{\nu \lambda}} \frac{dx^{\nu}}{d\tau} \frac{dx^{\lambda}}{d\tau} &= 0 \\
+\frac{d^2 x^{0}}{d\tau^2} +  \Gamma\indices{^0_{01}} \frac{dx^{0}}{d\tau} \frac{dx^1}{d\tau} +  \Gamma\indices{^0_{10}} \frac{dx^{1}}{d\tau} \frac{dx^0}{d\tau} &= 0 \\
+\frac{d^2 x^{0}}{d\tau^2} +  2 \Gamma\indices{^0_{01}} \frac{dx^{0}}{d\tau} \frac{dx^1}{d\tau}  &= 0  \\
+c \Ddot{t} +  \frac{2m}{r(r-2m)} c\dot{t} \dot{r}&= 0 \\
+\Ddot{t} +  \frac{2m}{r(r-2m)} \dot{t} \dot{r}&= 0,
+\end{align}
+donde hemos denotado $\dot{f} := df/d\tau$.
+
+Para la componente $\mu = 1$, la ecuación nos queda
+\begin{align}
+\frac{d^2 x^{1}}{d\tau^2} + \Gamma\indices{^1_{\nu \lambda}} \frac{dx^{\nu}}{d\tau} \frac{dx^{\lambda}}{d\tau} &= 0 \\
+    \frac{d^2 x^{1}}{d\tau^2} +  \Gamma\indices{^1_{00}} \left( \frac{dx^{0}}{d\tau} \right)^2 +  \Gamma\indices{^1_{11}} \left( \frac{dx^{1}}{d\tau} \right)^2 + \Gamma\indices{^1_{22}} \left( \frac{dx^2}{d\tau}\right)^2 +  \Gamma\indices{^1_{33}} \left( \frac{dx^{3}}{d\tau} \right)^2 &= 0 \\
+\Ddot{r} + \frac{(r-2m)m}{r^3} c^2 \dot{t}^2 - \frac{m}{r(r-2m)} \dot{r}^2 - (r-2m) \dot{\theta}^2 - (r-2m) \sin^2\theta \dot{\varphi}^2 &= 0 \\
+\Ddot{r} + \frac{mc^2(r-2m)}{r^3} \dot{t}^2 - \frac{m}{r(r-2m)} \dot{r}^2 - (r-2m) \left[\dot{\theta}^2 + \sin^2\theta \dot{\varphi}^2 \right]  &= 0.
+\end{align}
+
+Para la componente $\mu = 2$, la ecuación nos queda\begin{align}
+\frac{d^2 x^{2}}{d\tau^2} + \Gamma\indices{^2_{\nu \lambda}} \frac{dx^{\nu}}{d\tau} \frac{dx^{\lambda}}{d\tau} &= 0 \\
+    \frac{d^2 x^{2}}{d\tau^2} +  \Gamma\indices{^2_{12}}  \frac{dx^{1}}{d\tau} \frac{dx^{2}}{d\tau} +  \Gamma\indices{^2_{21}}  \frac{dx^{2}}{d\tau} \frac{dx^{1}}{d\tau} + \Gamma\indices{^2_{33}} \left( \frac{dx^{3}}{d\tau} \right)^2  &= 0 \\
+    \frac{d^2 x^{2}}{d\tau^2} +  2 \Gamma\indices{^2_{12}}  \frac{dx^{1}}{d\tau} \frac{dx^{2}}{d\tau} + \Gamma\indices{^2_{33}} \left( \frac{dx^{3}}{d\tau} \right)^2  &= 0 \\
+\Ddot{\theta} + \frac{2}{r} \dot{r} \dot{\theta} - \sin\theta\cos\theta \dot{\varphi}^2 &= 0.
+\end{align}
+
+Para la componente $\mu = 3$, la ecuación nos queda\begin{align}
+\frac{d^2 x^{3}}{d\tau^2} + \Gamma\indices{^3_{\nu \lambda}} \frac{dx^{\nu}}{d\tau} \frac{dx^{\lambda}}{d\tau} &= 0 \\
+    \frac{d^2 x^{3}}{d\tau^2} +  \Gamma\indices{^3_{13}}  \frac{dx^{1}}{d\tau} \frac{dx^{3}}{d\tau} +   \Gamma\indices{^3_{31}}  \frac{dx^{3}}{d\tau} \frac{dx^{1}}{d\tau} + \Gamma\indices{^3_{23}}  \frac{dx^{2}}{d\tau} \frac{dx^{3}}{d\tau} + \Gamma\indices{^3_{32}}  \frac{dx^{3}}{d\tau} \frac{dx^{2}}{d\tau}  &= 0 \\
+    \frac{d^2 x^{3}}{d\tau^2} +  2 \Gamma\indices{^3_{13}}  \frac{dx^{1}}{d\tau} \frac{dx^{3}}{d\tau}  + 2\Gamma\indices{^3_{23}}  \frac{dx^{2}}{d\tau} \frac{dx^{3}}{d\tau}   &= 0 \\
+    \Ddot{\varphi} + \frac{2}{r} \dot{r}\dot{\varphi} + 2 \frac{\cos\theta}{\sin \theta} \dot{\theta} \dot{\varphi} &= 0.
+\end{align}
+
+Por lo tanto, las ecuaciones de las geodésicas adoptan la siguiente forma explícita:
+\begin{align}
+\Ddot{t} +  \frac{2m}{r(r-2m)} \dot{t} \dot{r}&= 0, \label{eq:geod-time-1} \\    \Ddot{r} + \frac{mc^2(r-2m)}{r^3} \dot{t}^2 - \frac{m}{r(r-2m)} \dot{r}^2 - (r-2m) \left[\dot{\theta}^2 + \sin^2\theta \dot{\varphi}^2 \right]  &= 0, \label{eq:geod-time-2} \\
+\Ddot{\theta} + \frac{2}{r} \dot{r} \dot{\theta} - \sin\theta\cos\theta \dot{\varphi}^2 &= 0, \label{eq:geod-time-3} \\
+ \Ddot{\varphi} + \frac{2}{r} \dot{r}\dot{\varphi} + 2 \frac{\cos\theta}{\sin \theta} \dot{\theta} \dot{\varphi} &= 0. \label{eq:geod-time-4}
+\end{align}
+
+Notemos que
+\begin{align}
+    \frac{1}{\left( 1 - \frac{2m}{r} \right)} \frac{d}{d\tau} \left[ \left( 1 -  \frac{2m}{r} \right) \dot{t} \right] &= \frac{1}{\left( 1 - \frac{2m}{r} \right)} \left[ \left( 1 - \frac{2m}{r} \right) \ddot{t} + \frac{2m}{r^2} \dot{t} \dot{r} \right] \\
+    &= \ddot{t} + \frac{2m}{r\left( r - 2m \right)} \dot{t} \dot{r}, \\
+    \frac{1}{r^2 \sin^2\theta} \frac{d}{d\tau} \left[ r^2 \sin^2 \theta \dot{\varphi} \right] &= \frac{1}{r^2\sin^2\theta} \left[ r^2\sin^2\theta \ddot{\varphi} + 2r \sin^2\theta \dot{r} \dot{\varphi} + 2 r^2 \sin \theta \cos\theta \dot{\theta} \dot{\varphi}\right] \\
+    &= \ddot{\varphi} + \frac{2}{r} \dot{r} \dot{\varphi} + 2 \frac{\cos\theta}{\sin\theta} \dot{\theta} \dot{\varphi}.
+\end{align}
+
+Luego, las ecuaciones \eqref{eq:geod-time-1} y \eqref{eq:geod-time-4} pueden reescribirse como
+\begin{align}
+    \frac{1}{\left( 1 - \frac{2m}{r} \right)} \frac{d}{d\tau} \left[ \left( 1 -  \frac{2m}{r} \right) \dot{t} \right] &= 0, \\
+     \frac{1}{r^2 \sin^2\theta} \frac{d}{d\tau} \left[ r^2 \sin^2 \theta \dot{\varphi} \right] &= 0.
+\end{align}
+
+En esta forma, es claro que ambas ecuaciones implican la existencia de dos constantes del movimiento, las cuales pueden obtenerse a partir de los vectores de Killing: $\xi_t = (1,0,0,0)$ y $\xi_{\varphi} = (0,0,0,1)$,  escrito en coordenadas $x^{\mu} = (ct,r,\theta,\varphi)$. En efecto, si $x^{\mu}(\tau)$ es la forma paramétrica de una geodésica, donde el parámetro afín escogido es el tiempo propio $\tau$ y $\xi^{\mu}$ un vector de Killing, la cantidad
+\begin{equation}
+    Q = g_{\mu\nu} \xi^{\mu} \dot{x}^{\nu}
+\end{equation}
+
+es constante a lo largo de la curva geodésica.
+
+Para el Killing temporal:
+\begin{equation}
+    Q = g_{00} \xi_t^0 \dot{x}^0 = \left( 1 - \frac{2m}{r} \right) \dot{t}.
+\end{equation}
+
+Para el Killing en la variable $\varphi$:
+\begin{equation}
+    Q = g_{33} \xi_{\varphi}^3 \dot{x}^3 =  - r^2 \sin^2\theta  \dot{\varphi}.
+\end{equation}
+
+Por simplicidad introduciremos dos cosntantes adimensionales, $k$ y $h$, definidas por 
+\begin{equation} \label{eq:Cantidades-Conservadas}
+k:= \left( 1 - \frac{2m}{r}\right) \dot{t}, \quad hmc := r^2 \sin^2\theta \dot{\varphi}.
+\end{equation}
+
+Estas cantidades coinciden con las definiciones newtonianas de energía y momentum angular por unidad de masa del cuerpo orbitando. Es claro de ver que la expresión para $\mathcal{L} := hmc$ coincide con la componente $z$ del momento angular, para el caso de la energía es necesdario elaborar un poco más. Escribamos el tiempo propio por
+\begin{equation}
+c^2d\tau^2 = g_{\mu\nu} dx^{\mu}dx^{\nu} = \left(1 - \frac{2m}{r} \right) c^2 dt^2 - \frac{dr^2}{\left( 1 - \frac{2m}{r}\right)} - r^2 d\Omega^2 
+\end{equation}
+y al tomar el límite de campo débil $r \gg 2m$, 
+\begin{equation}
+\frac{1}{1 - \frac{2m}{r}} \approx 1.
+\end{equation}
+
+Así,
+\begin{equation}
+ c^2d\tau^2 \approx - \frac{2m}{r} c^2 dt^2 + c^2 dt^2 - d\vec{x} \cdot d\vec{x} = - \frac{2m}{r} c^2 dt^2 + \eta_{\mu\nu} dx^{\mu}dx^{\nu}.
+\end{equation}
+
+De la teoría de Relatividad Especial sabemos que 
+\begin{equation}
+\eta_{\mu\nu} dx^{\mu}dx^{\nu} = \left( 1 - \frac{v^2}{c^2}\right) c^2 dt^2.
+\end{equation}
+
+Entonces, 
+\begin{equation}
+c^2d\tau^2 \approx \left(1 - \frac{v^2}{c^2} - \frac{2m}{r} \right) c^2 dt^2 \Rightarrow \left(\frac{dt}{d\tau} \right)^2 \approx \frac{1}{1 - \frac{v^2}{c^2} - \frac{2m}{r}}.
+\end{equation}
+
+Evaluando la raíz cuadrada, encontramos que, para $r\gg 2m$,
+\begin{align}
+\dot{t} &\approx \frac{1}{\sqrt{1 - \frac{v^2}{c^2} - \frac{2m}{r}}} \\
+&= \frac{1}{\sqrt{1 -\frac{v^2}{c^2}}}  + \frac{1}{\left(\sqrt{1 -\frac{v^2}{c^2}  }\right)^3} \frac{m}{r} + \mathcal{O}\left(\frac{4m^2}{r^2} \right) \\
+&= \gamma + \frac{m}{\gamma^3 r} + \mathcal{O}\left(\frac{4m^2}{r^2} \right),
+\end{align}
+donde $\gamma = 1/(1 - v^2/c^2)$. 
+
+Si ahora consideramos el límite no relativista, $v \ll c$, 
+\begin{equation}
+\gamma \approx 1 + \frac{v^2}{2c^2}.
+\end{equation}
+
+Por lo tanto, en los límite de campo débil y no relativista,
+\begin{align}
+k &= \left(1 - \frac{2m}{r} \right) \dot{t} \\
+&\approx  \left(1 - \frac{2m}{r} \right) \left(\gamma + \frac{m}{\gamma^3 r} \right) \\
+&=  \gamma + \frac{m}{\gamma^3r} - \frac{2m}{r} \gamma - \cancelto{0}{\frac{2m^2}{\gamma^3 r^2}} \\
+&\approx 1 + \frac{v^2}{2c^2} + \frac{m}{(1 + \frac{v^2}{2c^2})^3 r} - \frac{2m}{r} - \cancelto{0}{\frac{2m}{r} \frac{v^2}{2c^2}} \\
+&= 1 + \frac{v^2}{2c^2} + \frac{m}{r} \left( \frac{1}{(1 + \frac{v^2}{2c^2})^3} \right) - \frac{2m}{r} - \cancelto{0}{\frac{2m}{r} \frac{v^2}{2c^2}}  \\
+&\approx 1 + \frac{v^2}{2c^2} + \frac{m}{r} \left( 1 - 3 \frac{v^2}{2c^2} \right) - \frac{2m}{r} - \cancelto{0}{\frac{2m}{r} \frac{v^2}{2c^2}} \\
+&\approx 1 + \frac{v^2}{2c^2} + \frac{m}{r} - \frac{2m}{r} \\
+&= 1 + \frac{v^2}{2c^2} - \frac{m}{r}.
+\end{align}
+
+Recordando que $m = GM/c^2$,
+\begin{equation} \label{eq:energy-limit}
+k \approx \frac{1}{M'c^2}\left( M'c^2 + \frac{1}{2} M' v^2 - \frac{GM M'}{r} \right),
+\end{equation}
+donde $M'$ es la masa de una partícula orbitando en la geodésica. Verificando así que en los límites mencionados $k$ se aproxima a la energía de la partícula por unidad de masa de su energía en reposo, pues en la ecuación \eqref{eq:energy-limit} tenemos la suma de la energía en reposo, la energía cinética y de la energía potencial gravitatoria (newtoniana).
+
+
+Al igual que en el caso newtoniano (problema de Kepler), la órbita está contenida en un plano. Por la simetría del problema podemos elegir el plano ecuatorial: $\theta(0) = \pi/2$ y $\dot{\theta}(0) = 0$, entonces la ecuación \eqref{eq:geod-time-3} implica que $\ddot{\theta}(0) = 0$. Por tanto, para todo $\tau$,
+\begin{equation} \label{eq:theta-sol}
+\theta(\tau) = \frac{\pi}{2}.
+\end{equation}
+
+Nos queda por resolver la ecuación radial \eqref{eq:geod-time-1}, para ello usemo la identidad
+\colorlet{shadecolor}{red!20}
+\begin{shaded}
+\begin{equation} 
+   g_{\mu\nu} \frac{dx^{\mu}}{d\tau}\frac{dx^{\nu}}{d\tau} \equiv c^2.
+\end{equation}
+\end{shaded}
+
+Expandiendo esta identidad, encontramos
+\begin{align}
+g_{\mu\nu} \frac{dx^{\mu}}{d\tau}\frac{dx^{\nu}}{d\tau} &= c^2 \\
+g_{00} c^2 \dot{t}^2 + g_{11} \dot{r}^2 + g_{22} \dot{\theta}^2 + g_{33} \dot{\varphi}^2 &= c^2 \\
+\left(1 - \frac{2m}{r} \right) c^2 \dot{t}^2 - \frac{1}{\left( 1- \frac{2m}{r} \right)} \dot{r}^2 - r^2 \CancelTo[\color{red}]{0}{\dot{\theta}^2} - r^2\sin^2\theta  \dot{\varphi}^2 &= c^2 \\
+\left(1 - \frac{2m}{r} \right) c^2 \dot{t}^2 - \frac{\dot{r}^2 }{\left( 1- \frac{2m}{r} \right)}  - r^2 \dot{\varphi}^2 &= c^2. \label{eq:geodesic-time-5}
+\end{align}
+    
+Usando \eqref{eq:Cantidades-Conservadas} y \eqref{eq:theta-sol}, podemos escribir \eqref{eq:geod-time-1} como
+\begin{align}
+\Ddot{r} + \frac{mc^2(r-2m)}{r^3} \dot{t}^2 - \frac{m}{r(r-2m)} \dot{r}^2 - (r-2m) \left[ \CancelTo[\color{red}]{0}{\dot{\theta}^2} + \sin^2\theta \dot{\varphi}^2 \right]  &= 0 \\
+\Ddot{r} + \frac{mc^2(r-2m)}{r^3} \frac{k^2}{\left( 1 - \frac{2m}{r} \right)^2} - \frac{m}{r(r-2m)} \dot{r}^2 - (r-2m) \frac{h^2m^2c^2}{r^4}  &= 0 \\
+\Ddot{r} + \frac{mc^2(r-2m)}{r^3} \frac{r^2k^2}{\left(r - 2m\right)^2} - \frac{m}{r(r-2m)} \dot{r}^2 - h^2m^2c^2 \frac{(r-2m)}{r^4}  &= 0 \\
+\Ddot{r} + \frac{mc^2k^2}{r(r-2m)}  - \frac{m}{r(r-2m)} \dot{r}^2 - h^2m^2c^2 \frac{(r-2m)}{r^4}  &= 0
+\end{align}
+
+Por otro lado, podemos escribir \eqref{eq:geodesic-time-5} como
+\begin{align}
+\left(1 - \frac{2m}{r} \right) c^2 \dot{t}^2 - \frac{\dot{r}^2 }{\left( 1- \frac{2m}{r} \right)}  - r^2 \dot{\varphi}^2 &= c^2 \\
+\left(1 - \frac{2m}{r} \right) \frac{c^2 k^2}{\left(1 - \frac{2m}{r} \right)^2} - \frac{\dot{r}^2}{\left(1 - \frac{2m}{r} \right)} - r^2 \frac{h^2m^2c^2}{r^4 \sin^4(\pi/2)} &= c^2 \\
+\frac{c^2k^2}{\left(1 - \frac{2m}{r} \right)} - \frac{\dot{r}^2}{\left(1 - \frac{2m}{r} \right)}  -  \frac{h^2m^2c^2}{r^2} &= c^2 \\
+\frac{\dot{r}^2}{\left(1 - \frac{2m}{r} \right)} &= \frac{k^2c^2}{\left(1 - \frac{2m}{r} \right)} - c^2 \left(1 + \frac{h^2m^2}{r^2} \right) \\
+\dot{r}^2 &= k^2c^2 - c^2 \left(1 - \frac{2m}{r} \right)\left(1 + \frac{h^2m^2}{r^2} \right).
+\end{align}
+
+En resumen, la dinámica de la coordenada radial está dada por las siguientes ecuaciones:
+\begin{align}
+\Ddot{r} &+ \frac{mc^2k^2}{r(r-2m)}  - \frac{m}{r(r-2m)} \dot{r}^2 - h^2m^2c^2 \frac{(r-2m)}{r^4}  = 0, \label{eq:geodesic-time-6} \\
+\dot{r}^2 &= k^2c^2 - c^2 \left(1 - \frac{2m}{r} \right)\left(1 + \frac{h^2m^2}{r^2} \right).\label{eq:geodesic-time-7} 
+\end{align}
+
+Sin embargo, la ecuación \eqref{eq:geodesic-time-7} implica la condición \eqref{eq:geodesic-time-6}. En efecto, derivando con respecto a $\tau$ la ecuación \eqref{eq:geodesic-time-7}, tenemos que
+\begin{align}
+2 \dot{r} \ddot{r} &= - \frac{2m c^2}{r^2} \dot{r} \left(1 + \frac{h^2m^2}{r^2} \right) - c^2 \left(1 - \frac{2m}{r} \right)\left(- \frac{2h^2m^2}{r^3} \dot{r} \right) \\
+\ddot{r} &= - \frac{mc^2}{r^2} \left(1 + \frac{h^2m^2}{r^2} \right) + h^2m^2c^2 \frac{(r-2m)}{r^4}. \label{eq:geodesic-time-8}
+\end{align}
+
+De la misma ecuación \eqref{eq:geodesic-time-7} se tiene que
+\begin{equation}
+- c^2 \left( 1 + \frac{h^2m^2}{r^2}\right) = \frac{\dot{r}^2 - k^2c^2}{\left( 1 - \frac{2m}{r}\right)}.
+\end{equation}
+
+Reemplazando en \eqref{eq:geodesic-time-8}:
+\begin{align}
+\ddot{r} &= - \frac{m}{r^2} \frac{\dot{r}^2 - k^2c^2}{\left(1 - \frac{2m}{r} \right)} + ^2m^2c^2 \frac{(r-2m)}{r^4} \\
+\ddot{r} &= - \frac{mc^2k^2}{r(r-2m)} + \frac{m}{r(r-2m)} \dot{r}^2 + h^2m^2c^2 \frac{(r-2m)}{r^4}.
+\end{align}
+
+Por lo tanto, sólo es necesario resolver la ecuación \eqref{eq:geodesic-time-7}.
+
+\section{Formulación Lagrangiana y Hamiltoniana}
+
+
+Consideremos el lagrangiano efectivo
+\begin{equation}
+L = \frac{1}{2} g_{\mu\nu} \frac{dx^{\mu}}{d\tau}\frac{dx^{\nu}}{d\tau}.
+\end{equation}
+
+\end{document}
