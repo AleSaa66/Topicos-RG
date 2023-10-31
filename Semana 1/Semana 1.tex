@@ -1,0 +1,254 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsfonts,amsmath,amssymb,float, amsthm,mathrsfs}  
+\usepackage[right=4.5cm,left=2cm,top=3cm,bottom=3cm,headsep= 0.7cm,footskip=0.5cm]{geometry}
+\usepackage{enumerate}
+\usepackage{wrapfig} 
+\usepackage[rflt]{floatflt} 
+\usepackage{framed}
+%\usepackage[most]{tcolorbox}
+\usepackage[dvipsnames]{xcolor}
+\colorlet{shadecolor}{green!20}
+\setlength\FrameSep{0.5ex}
+\usepackage{thmtools}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{listings} 
+\usepackage{pstricks, caption}
+\usepackage[colorlinks]{hyperref}
+\usepackage{csquotes}
+\usepackage{fullpage}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\tdplotsetmaincoords{80}{70}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows,babel}
+\usepackage[font=small]{caption}
+\usepackage{scalerel} %\scaleto{text}{size}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+\usepackage{comment}
+\usepackage{marginnote}
+\usepackage{tensor}
+\usepackage{cleveref}
+\newcommand{\dbar}{\mathchar'26\mkern-12mu d}
+\renewcommand*{\marginnotevadjust}{-0.1cm}
+\renewcommand*{\marginfont}{\footnotesize}
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-14.49998pt}
+\setlength{\headsep}{15pt}
+\setlength{\footskip}{14.49998pt}
+\decimalpoint
+\newcommand{\grad}{^\circ}
+\newlength{\drop}
+\DeclareMathOperator{\sign}{sgn}
+\DeclareMathOperator{\Log}{Log}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\begin{document}
+
+\pagestyle{plain}
+
+\begin{flushleft}\vspace{-2cm}
+Departamento de Física \\
+Facultad de Cs. Físicas y Matemáticas\\
+Universidad de Concepción
+\end{flushleft}
+
+\begin{flushright}\vspace{-1.5cm}
+\textbf{Tópicos en Relatividad General} 
+\end{flushright}
+
+\rule{\linewidth}{0.1mm}
+
+\begin{center}
+\textbf{\LARGE Semana 1}
+\end{center}
+
+\begin{flushleft}
+\textbf{Nombre:} Alejandro Saavedra San Martín. \\
+\textbf{Profesor:} Guillermo Rubilar Alegría.
+\end{flushleft}
+
+La métrica de Schwarzschild exterior, en las coordenadas de curvatura $x^{\mu} = (ct,r,\theta,\varphi)$, toma la forma
+\colorlet{shadecolor}{red!20}
+\begin{shaded}
+\begin{equation} \label{eq:Scwarzschild-metric}
+    ds^2 = \left( 1 - \frac{2m}{r}\right) c^2 dt^2 - \frac{dr^2}{\left( 1- \frac{2m}{r} \right)} - r^2 \left[ d\theta^2 + \sin^2 \theta d\varphi^2 \right], \quad r > 2m.
+\end{equation}
+    
+\end{shaded}
+
+Buscamos escribir el $ds^2$ en un sistema coordenado isótropo en el que la sección espacial ($t = \text{cte}$) sea proporcional a la usual distancia euclideana:
+\begin{equation}
+    ds^2 = \Tilde{A} (c^2 dt^2) - \Tilde{B} d\ell_{R^{3}}^2,
+\end{equation}
+donde $d\ell_{R^{3}}^2 = dx^2 + dy^2 + dz^2$ en coordenadas cuasi-cartesianas, o $d\ell_{R^{3}}^2 = d\rho^2 + \rho^2 (d\theta^2 + \sin^2\theta d\varphi^2)$ en coordenadas cuasi-esféricas. Entonces, las coordenadas isotrópicas, $x^{\mu} = (ct, \rho, \theta, \varphi)$, que buscamos deben ser tales que el elemento de línea adopte la forma
+\begin{equation} \label{eq:pre-Sch-metric-isotropic}
+    ds^2 = \Tilde{A}(\rho) c^2 dt^2 - \Tilde{B}(\rho) \left[ d\rho^2 + \rho^2 (d\theta^2 + \sin^2\theta d\varphi^2) \right].
+\end{equation}
+
+Como $ds^2$ es un escalar bajo transformaciones generales de coordenadas (TGC's), comparando \eqref{eq:pre-Sch-metric-isotropic} con \eqref{eq:Scwarzschild-metric}, encontramos  las siguientes condiciones:
+\begin{align}
+    \Tilde{A}(\rho) &= 1 - \frac{2m}{r}, \label{eq:isotropic-1}\\
+    \Tilde{B}(\rho) d\rho^2 &= \left( 1 - \frac{2m}{r} \right)^{-1} dr^2, \label{eq:isotropic-2} \\
+    \Tilde{B}(\rho) \rho^2 &= r^2. \label{eq:isotropic-3}
+\end{align}
+
+Note que la condición \eqref{eq:isotropic-3} que debe cumplirse para $d\theta^2$ es la misma para $d\varphi^2$.
+
+Resolvamos el sistema de ecuaciones \eqref{eq:isotropic-1}-\eqref{eq:isotropic-3} considerando como incógnitas las funciones $\Tilde{A}$, $\Tilde{B}$ y $\rho = \rho(r)$. De la ecuación \eqref{eq:isotropic-3},
+\begin{equation} \label{eq:isotropic-4}
+    \Tilde{B}(\rho) =  \frac{r^2}{\rho^2}.
+\end{equation}
+
+Reemplazando en \eqref{eq:isotropic-2}, encontramos una ecuación diferencial para $\rho(r)$ que resulta ser separable:
+\begin{equation} \label{eq:isotropic-5}
+    \frac{r^2}{\rho^2} d\rho^2 = \left( 1 - \frac{2m}{r}\right)^{-1} dr^2.
+\end{equation}
+
+Si suponemos que $d\rho/dr > 0$ y $r > 2m$, podemos reescribir \eqref{eq:isotropic-5} como
+\begin{equation} \label{eq:isotropic-6}
+    \frac{d\rho}{\rho} = \frac{dr}{\sqrt{r(r-2m)}}.
+\end{equation}
+
+Integrando a ambos lados de la ecuación \eqref{eq:isotropic-6}:
+\begin{equation}
+    \int \frac{d\rho}{\rho} = \ln(\rho) = \int \frac{dr}{\sqrt{r(r-2m)}}. \label{eq:isotropic-7}
+\end{equation}
+
+Para resolver la integral en $r$, usemos la sustitución trigonométrica 
+\begin{equation}
+    r - m = m \sec\theta \Rightarrow dr = m \sec\theta \tan\theta d\theta,
+\end{equation}
+válida para $0 < \theta < \pi/2$ \footnote{De esta forma se recupera el dominio $r > 2m$.}. Entonces, usando la identidad trigonométrica $\tan^2\theta + 1 \equiv \sec^2\theta$, encontramos que
+\begin{align}
+    \int \frac{dr}{\sqrt{r(r-2m)}} &= \int \frac{m \sec\theta \tan\theta d\theta}{\sqrt{m^2 \sec^2\theta - m^2}} \nonumber \\
+    &= \int \frac{\sec\theta \tan \theta}{\sqrt{\sec^2\theta - 1}} d\theta \nonumber \\
+    &= \int \sec\theta \,d\theta \nonumber \\
+    &= \ln|\sec\theta + \tan \theta| + C \nonumber \\
+    &= \ln\left|\frac{r-m}{m} + \frac{\sqrt{r^2 - 2mr}}{m} \right| + C \nonumber \\
+    &= \ln\left(r -m +\sqrt{r^2-2mr}\right) + D, \label{eq:isotropic-8}
+\end{align}
+donde $D = C- \ln(m)$ es una constante de integración. Por lo tanto, comparando las ecuaciones \eqref{eq:isotropic-7} y \eqref{eq:isotropic-8}, obtenemos 
+\begin{equation}
+    \ln(\rho) = \ln\left(r -m +\sqrt{r^2-2mr}\right) + D \Rightarrow \rho = e^{D} \left(r -m +\sqrt{r^2-2mr}\right).
+\end{equation}
+
+Despejando la coordenada $r$ en términos de $\rho$:
+\begin{align}
+    (\rho + e^D m) - e^D r &= e^D \sqrt{r^2-2mr} \\
+    [(\rho + e^D m) - e^D r]^2 &= e^{2D} (\sqrt{r^2-2mr} )^2\\
+    (\rho + e^D m)^2 - 2 e^D r (\rho + e^D m) + \cancel{e^{2D} r^2} &= e^{2D} (\cancel{r^2} - 2mr) \\
+    (\rho + e^D m)^2 &= 2 e^D r(\rho + \cancel{e^{D} m}) - \cancel{2mr e^{2D}} \\
+    (\rho + e^D m)^2 &= 2 e^D r \rho \\
+    \frac{(\rho + e^D m)^2}{2 e^D \rho} &= r \\
+    \left(\frac{1}{2e^D}\right) \rho \left[ 1 + \frac{m}{2\rho} \left( 2 e^D \right) \right]^2 &= r.
+\end{align}
+
+Si denotamos la constante $\beta = 1/(2e^D)$, hemos encontrado la transformación de coordenadas entre $\rho$ y $r$:
+\begin{equation} 
+    r = \beta \rho \left( 1+ \frac{m}{2\beta \rho} \right)^2.
+\end{equation}
+
+La constante $\beta$ está relacionada con la escala elegida para la coordenadas radial $\rho$. Sin perder generalidad, podemos elegir esta constante de modo que asintóticamente se aproxime a la usual coordenada radial esférica en un espacio plano. Esto requiere que $\beta = 1$. Así, la transformación de coordenadas queda 
+\begin{equation}
+r = \rho \left( 1 + \frac{m}{2\rho} \right)^2.
+\end{equation}
+
+Considerando $\rho = \rho(r)$ y derivando implícitamente con respecto a $r$, tenemos que
+\begin{align}
+1 &= \frac{d}{dr} \left[ \rho \left( 1 + \frac{m}{2\rho} \right)^2 \right] \\
+ &= \frac{d\rho}{dr} \left( 1 + \frac{m}{2\rho} \right)^2 + 2 \rho \left( 1 + \frac{m}{2\rho} \right) \left( - \frac{m}{2\rho^2} \right) \frac{d\rho}{dr} \\
+ &= \frac{d\rho}{dr} \left(1 + \frac{m}{2\rho} \right) \left[ \left(1 + \frac{m}{2\rho} \right) - \frac{m}{\rho}\right] \\
+ &= \frac{d\rho}{dr} \left(1 + \frac{m}{2\rho} \right)  \left(1 - \frac{m}{2\rho} \right) \\
+ &= \frac{d\rho}{dr} \left(1 - \frac{m^2}{4\rho^2} \right). 
+\end{align}
+
+Luego, 
+\begin{equation}
+\frac{d\rho}{dr} = \frac{1}{ \left(1 - \frac{m^2}{4\rho^2} \right)}.
+\end{equation}
+
+Recordemos que para escribir la ecuación \eqref{eq:isotropic-6} hemos supuesto que  $d\rho/dr > 0$. Entonces, debe cumplirse que 
+\begin{equation}
+1 - \frac{m^2}{4\rho^2} > 0 \Leftrightarrow \rho >  \frac{m}{2}.
+\end{equation}
+
+Por lo tanto, la transformación entre las coordenadas $\rho$ y $r$, con $r > 2m$, es
+\colorlet{shadecolor}{green!20}
+\begin{shaded}
+\begin{equation} \label{eq:isotropic-r(rho)}
+    r = \rho \left( 1 + \frac{m}{2\rho} \right)^2, \quad \rho > \frac{m}{2}.
+\end{equation}    
+\end{shaded}
+
+Si reemplazamos \eqref{eq:isotropic-r(rho)} en \eqref{eq:isotropic-4}, obtenemos el coeficiente métrico 
+\begin{shaded}
+\begin{equation} \label{eq:metric-isotropic-B}
+    \Tilde{B}(\rho) = \left( 1 + \frac{m}{2\rho} \right)^4.
+\end{equation}    
+\end{shaded}
+
+Por último, al reemplazar \eqref{eq:isotropic-r(rho)} en \eqref{eq:isotropic-1}, obtenemos el coeficiente métrico restante:
+\begin{align}
+    \Tilde{A}(\rho) &= 1 - \frac{2m/\rho}{\left( 1 + \frac{m}{2\rho}\right)^2} \\
+    &= \frac{\left( 1 + \frac{m}{2\rho}\right)^2 - \frac{2m}{\rho}}{\left( 1 + \frac{m}{2\rho}\right)^2} \\
+    &= \frac{\left(1 - \frac{m}{2\rho} \right)^2}{\left( 1 + \frac{m}{2\rho}\right)^2},
+\end{align}
+es decir,
+\begin{shaded}
+    \begin{equation}
+        \Tilde{A}(\rho) = \frac{\left(1 - \frac{m}{2\rho} \right)^2}{\left( 1 + \frac{m}{2\rho}\right)^2}. 
+    \end{equation}
+\end{shaded}
+
+Resumiendo, el elemento de línea de la solución de Schwarzschild exterior en coordenadas isotrópicas tiene la forma:
+\colorlet{shadecolor}{red!20}
+\begin{shaded}
+    \begin{equation} \label{eq:metric-Schwarz-isotropic-sphere}
+        ds^2 = \frac{\left(1 - \frac{m}{2\rho} \right)^2}{\left( 1 + \frac{m}{2\rho}\right)^2} c^2 dt^2 - \left( 1 + \frac{m}{2\rho} \right)^4 \left[d\rho^2 + \rho^2 (d\theta^2 + \sin^2\theta d\varphi^2)\right], \quad \rho > \frac{m}{2}.
+    \end{equation}
+\end{shaded}
+
+En coordenadas cuasi-cartesianas, bajo la transformación de coordenadas
+\begin{align}
+    x &= \rho \sin\theta \cos\varphi, \label{eq:esferica-carte-1} \\
+    y &= \rho \sin\theta \sin\varphi, \label{eq:esferica-carte-2}\\
+    z &= \rho \cos\theta, \label{eq:esferica-carte-3}
+\end{align}
+el elemento de línea también puede ser escrito como
+\begin{shaded}
+    \begin{equation}\label{eq:metric-Schwarz-isotropic-carte}
+        ds^2 = \frac{\left(1 - \frac{m}{2\rho} \right)^2}{\left( 1 + \frac{m}{2\rho}\right)^2} c^2 dt^2 - \left( 1 + \frac{m}{2\rho} \right)^4 \left[dx^2 + dy^2 + dz^2\right], \quad \rho = \sqrt{x^2 + y^2 + z^2}.
+    \end{equation}
+\end{shaded}
+
+En efecto, calculando los diferenciales de la transformación de coordenadas \eqref{eq:esferica-carte-1}-\eqref{eq:esferica-carte-3}:
+\begin{align}
+    dx^2 &= (\sin\theta \cos\varphi \,d\rho^2 + \rho \cos\theta\cos\varphi \,d\theta - \rho \sin\theta \sin \varphi \,d\varphi)^2 \nonumber\\
+    &= {\color{red} \sin^2\theta \cos^2\varphi \,d\rho^2}  {\color{blue} + \rho^2 \cos^2\theta \cos^2\varphi \,d\theta^2} {\color{ForestGreen} + \rho^2 \sin^2\theta \sin^2\varphi \,d\varphi^2} + 2\rho \sin\theta \cos\theta \cos^2\varphi \,d\rho\theta \nonumber\\
+    & \quad  - 2\rho \sin^2\theta \sin\varphi \cos\varphi \,d\rho d\varphi - 2\rho^2 \sin\theta \cos\theta \sin\varphi \cos\varphi \,d\theta d\varphi,  \label{eq:esferica-carte-4}\\
+    dy^2 &= (\sin\theta \sin\varphi \,d\rho^2 + \rho \cos\theta\sin\varphi \,d\theta + \rho \sin\theta \cos \varphi \,d\varphi)^2 \nonumber\\
+    &= {\color{red}\sin^2\theta \sin^2\varphi \,d\rho^2}  {\color{blue} + \rho^2 \cos^2\theta \sin^2\varphi \,d\theta^2}  {\color{ForestGreen} + \rho^2 \sin^2\theta \cos^2\varphi\,d\varphi^2} + 2 \rho\sin\theta \cos\theta \sin^2\varphi \,d\rho d\theta \nonumber \\
+    & \quad  + 2 \rho\sin^2\theta \sin\varphi \cos\varphi \,d\rho 
+    d\varphi + 2 \rho^2 \sin\theta \cos\theta \sin\varphi \cos \varphi \,d\theta d\varphi, \label{eq:esferica-carte-5}\\
+    dz^2 &= (\cos\theta \,d\rho - \rho\sin \theta \,d\theta)^2 \nonumber\\
+    &= {\color{red}\cos^2\theta \,d\rho^2} - 2 \rho\sin\theta \cos\theta \,d\rho d\theta  {\color{blue} +
+    \rho^2 \sin^2\theta \,d\theta^2}. \label{eq:esferica-carte-6}
+\end{align}
+
+ Entonces, al calcular el elemento de línea $d\ell^2_{R^3} = dx^2 + dy^2 + dz^2$, en coordenadas esféricas, los términos en colores de las ecuaciones \eqref{eq:esferica-carte-5}-\eqref{eq:esferica-carte-6} se pueden agrupar, mientras que los términos restantes de cancelan mutuamente. Por lo tanto, 
+\begin{equation}
+    d\ell^2_{R^3} = dx^2 + dy^2 + dz^2 = d \rho^2 + \rho^2 d\theta^2 + \rho^2 \sin^2\theta d\varphi^2.
+\end{equation}
+
+Al igual que la métrica \eqref{eq:Scwarzschild-metric}, las métricas \eqref{eq:metric-Schwarz-isotropic-sphere} y \eqref{eq:metric-Schwarz-isotropic-carte} también satisfacen las ecuaciones de Einstein en el vacío. Para mayores detalles puede consultar el Notebook (...).
+
+
+
+\end{document}
