@@ -100,7 +100,7 @@ Las componentes no nulas de los símbolos de Christoffel son:
     \Gamma\indices{^2_{33}} &= - \sin\theta \cos\theta, \quad \Gamma\indices{^3_{13}} = \frac{1}{r}, \quad \Gamma\indices{^3_{23}} = \frac{\cos\theta}{\sin\theta}.   
 \end{align}
 
-Ver código (--)
+Cálculo de los símbolos de Christoffel en el siguiente \href{https://github.com/AleSaa66/Topicos-RG/blob/main/Semana%202/Semana-2.ipynb}{Notebook}.
 
 \section{Geodésicas tipo tiempo} 
 
@@ -142,17 +142,20 @@ Para la componente $\mu = 3$, la ecuación nos queda\begin{align}
 \end{align}
 
 Por lo tanto, las ecuaciones de las geodésicas adoptan la siguiente forma explícita:
+\colorlet{shadecolor}{green!20}
+\begin{shaded}
 \begin{align}
 \Ddot{t} +  \frac{2m}{r(r-2m)} \dot{t} \dot{r}&= 0, \label{eq:geod-time-1} \\    \Ddot{r} + \frac{mc^2(r-2m)}{r^3} \dot{t}^2 - \frac{m}{r(r-2m)} \dot{r}^2 - (r-2m) \left[\dot{\theta}^2 + \sin^2\theta \dot{\varphi}^2 \right]  &= 0, \label{eq:geod-time-2} \\
 \Ddot{\theta} + \frac{2}{r} \dot{r} \dot{\theta} - \sin\theta\cos\theta \dot{\varphi}^2 &= 0, \label{eq:geod-time-3} \\
  \Ddot{\varphi} + \frac{2}{r} \dot{r}\dot{\varphi} + 2 \frac{\cos\theta}{\sin \theta} \dot{\theta} \dot{\varphi} &= 0. \label{eq:geod-time-4}
 \end{align}
+\end{shaded}
 
 Notemos que
 \begin{align}
-    \frac{1}{\left( 1 - \frac{2m}{r} \right)} \frac{d}{d\tau} \left[ \left( 1 -  \frac{2m}{r} \right) \dot{t} \right] &= \frac{1}{\left( 1 - \frac{2m}{r} \right)} \left[ \left( 1 - \frac{2m}{r} \right) \ddot{t} + \frac{2m}{r^2} \dot{t} \dot{r} \right] \\
+    \frac{1}{\left( 1 - \frac{2m}{r} \right)} \frac{d}{d\tau} \left[ \left( 1 -  \frac{2m}{r} \right) \dot{t} \right] &= \frac{1}{\left( 1 - \frac{2m}{r} \right)} \left[ \left( 1 - \frac{2m}{r} \right) \ddot{t} + \frac{2m}{r^2} \dot{t} \dot{r} \right] \nonumber \\
     &= \ddot{t} + \frac{2m}{r\left( r - 2m \right)} \dot{t} \dot{r}, \\
-    \frac{1}{r^2 \sin^2\theta} \frac{d}{d\tau} \left[ r^2 \sin^2 \theta \dot{\varphi} \right] &= \frac{1}{r^2\sin^2\theta} \left[ r^2\sin^2\theta \ddot{\varphi} + 2r \sin^2\theta \dot{r} \dot{\varphi} + 2 r^2 \sin \theta \cos\theta \dot{\theta} \dot{\varphi}\right] \\
+    \frac{1}{r^2 \sin^2\theta} \frac{d}{d\tau} \left[ r^2 \sin^2 \theta \dot{\varphi} \right] &= \frac{1}{r^2\sin^2\theta} \left[ r^2\sin^2\theta \ddot{\varphi} + 2r \sin^2\theta \dot{r} \dot{\varphi} + 2 r^2 \sin \theta \cos\theta \dot{\theta} \dot{\varphi}\right]\nonumber \\
     &= \ddot{\varphi} + \frac{2}{r} \dot{r} \dot{\varphi} + 2 \frac{\cos\theta}{\sin\theta} \dot{\theta} \dot{\varphi}.
 \end{align}
 
@@ -179,12 +182,15 @@ Para el Killing en la variable $\varphi$:
     Q = g_{33} \xi_{\varphi}^3 \dot{x}^3 =  - r^2 \sin^2\theta  \dot{\varphi}.
 \end{equation}
 
-Por simplicidad introduciremos dos cosntantes adimensionales, $k$ y $h$, definidas por 
+Por simplicidad introduciremos dos constantes adimensionales, $k$ y $h$, definidas por 
+\colorlet{shadecolor}{green!20}
+\begin{shaded}
 \begin{equation} \label{eq:Cantidades-Conservadas}
 k:= \left( 1 - \frac{2m}{r}\right) \dot{t}, \quad hmc := r^2 \sin^2\theta \dot{\varphi}.
 \end{equation}
+\end{shaded}
 
-Estas cantidades coinciden con las definiciones newtonianas de energía y momentum angular por unidad de masa del cuerpo orbitando. Es claro de ver que la expresión para $\mathcal{L} := hmc$ coincide con la componente $z$ del momento angular, para el caso de la energía es necesdario elaborar un poco más. Escribamos el tiempo propio por
+Estas cantidades coinciden con las definiciones newtonianas de energía y momentum angular por unidad de masa del cuerpo orbitando. Es claro de ver que la expresión para $\mathcal{L} := hmc$ coincide con la componente $z$ del momento angular, para el caso de la energía es necesario elaborar un poco más. Escribamos el tiempo propio como
 \begin{equation}
 c^2d\tau^2 = g_{\mu\nu} dx^{\mu}dx^{\nu} = \left(1 - \frac{2m}{r} \right) c^2 dt^2 - \frac{dr^2}{\left( 1 - \frac{2m}{r}\right)} - r^2 d\Omega^2 
 \end{equation}
@@ -210,11 +216,11 @@ c^2d\tau^2 \approx \left(1 - \frac{v^2}{c^2} - \frac{2m}{r} \right) c^2 dt^2 \Ri
 
 Evaluando la raíz cuadrada, encontramos que, para $r\gg 2m$,
 \begin{align}
-\dot{t} &\approx \frac{1}{\sqrt{1 - \frac{v^2}{c^2} - \frac{2m}{r}}} \\
-&= \frac{1}{\sqrt{1 -\frac{v^2}{c^2}}}  + \frac{1}{\left(\sqrt{1 -\frac{v^2}{c^2}  }\right)^3} \frac{m}{r} + \mathcal{O}\left(\frac{4m^2}{r^2} \right) \\
-&= \gamma + \frac{m}{\gamma^3 r} + \mathcal{O}\left(\frac{4m^2}{r^2} \right),
+\dot{t} &\approx \frac{1}{\sqrt{1 - \frac{v^2}{c^2} - \frac{2m}{r}}} \nonumber \\
+&= \frac{1}{\sqrt{1 -\frac{v^2}{c^2}}}  + \frac{1}{\left(\sqrt{1 -\frac{v^2}{c^2}  }\right)^3} \frac{m}{r} + \mathcal{O}\left(\frac{m^2}{r^2} \right) \nonumber\\
+&= \gamma + \frac{m}{\gamma^3 r} + \mathcal{O}\left(\frac{m^2}{r^2} \right),
 \end{align}
-donde $\gamma = 1/(1 - v^2/c^2)$. 
+donde $\gamma = 1/\sqrt{1 - v^2/c^2}$. 
 
 Si ahora consideramos el límite no relativista, $v \ll c$, 
 \begin{equation}
@@ -223,13 +229,13 @@ Si ahora consideramos el límite no relativista, $v \ll c$,
 
 Por lo tanto, en los límite de campo débil y no relativista,
 \begin{align}
-k &= \left(1 - \frac{2m}{r} \right) \dot{t} \\
-&\approx  \left(1 - \frac{2m}{r} \right) \left(\gamma + \frac{m}{\gamma^3 r} \right) \\
-&=  \gamma + \frac{m}{\gamma^3r} - \frac{2m}{r} \gamma - \cancelto{0}{\frac{2m^2}{\gamma^3 r^2}} \\
-&\approx 1 + \frac{v^2}{2c^2} + \frac{m}{(1 + \frac{v^2}{2c^2})^3 r} - \frac{2m}{r} - \cancelto{0}{\frac{2m}{r} \frac{v^2}{2c^2}} \\
-&= 1 + \frac{v^2}{2c^2} + \frac{m}{r} \left( \frac{1}{(1 + \frac{v^2}{2c^2})^3} \right) - \frac{2m}{r} - \cancelto{0}{\frac{2m}{r} \frac{v^2}{2c^2}}  \\
-&\approx 1 + \frac{v^2}{2c^2} + \frac{m}{r} \left( 1 - 3 \frac{v^2}{2c^2} \right) - \frac{2m}{r} - \cancelto{0}{\frac{2m}{r} \frac{v^2}{2c^2}} \\
-&\approx 1 + \frac{v^2}{2c^2} + \frac{m}{r} - \frac{2m}{r} \\
+k &= \left(1 - \frac{2m}{r} \right) \dot{t} \nonumber\\
+&\approx  \left(1 - \frac{2m}{r} \right) \left(\gamma + \frac{m}{\gamma^3 r} \right) \nonumber\\
+&=  \gamma + \frac{m}{\gamma^3r} - \frac{2m}{r} \gamma - \cancelto{0}{\frac{2m^2}{\gamma^3 r^2}} \nonumber\\
+&\approx 1 + \frac{v^2}{2c^2} + \frac{m}{(1 + \frac{v^2}{2c^2})^{3/2} r} - \frac{2m}{r} - \cancelto{0}{\frac{2m}{r} \frac{v^2}{2c^2}} \nonumber\\
+&= 1 + \frac{v^2}{2c^2} + \frac{m}{r} \left( \frac{1}{(1 + \frac{v^2}{2c^2})^{3/2}} \right) - \frac{2m}{r} - \cancelto{0}{\frac{2m}{r} \frac{v^2}{2c^2}} \nonumber \\
+&\approx 1 + \frac{v^2}{2c^2} + \frac{m}{r} \left( 1 - 3 \frac{v^2}{4c^2} \right) - \frac{2m}{r} - \cancelto{0}{\frac{2m}{r} \frac{v^2}{2c^2}}\nonumber \\
+&\approx 1 + \frac{v^2}{2c^2} + \frac{m}{r} - \frac{2m}{r} \nonumber\\
 &= 1 + \frac{v^2}{2c^2} - \frac{m}{r}.
 \end{align}
 
@@ -245,7 +251,7 @@ Al igual que en el caso newtoniano (problema de Kepler), la órbita está conten
 \theta(\tau) = \frac{\pi}{2}.
 \end{equation}
 
-Nos queda por resolver la ecuación radial \eqref{eq:geod-time-1}, para ello usemo la identidad
+Nos queda por resolver la ecuación radial \eqref{eq:geod-time-1}, para ello usemos la identidad
 \colorlet{shadecolor}{red!20}
 \begin{shaded}
 \begin{equation} 
@@ -279,10 +285,13 @@ Por otro lado, podemos escribir \eqref{eq:geodesic-time-5} como
 \end{align}
 
 En resumen, la dinámica de la coordenada radial está dada por las siguientes ecuaciones:
+\colorlet{shadecolor}{green!20}
+\begin{shaded}
 \begin{align}
 \Ddot{r} &+ \frac{mc^2k^2}{r(r-2m)}  - \frac{m}{r(r-2m)} \dot{r}^2 - h^2m^2c^2 \frac{(r-2m)}{r^4}  = 0, \label{eq:geodesic-time-6} \\
 \dot{r}^2 &= k^2c^2 - c^2 \left(1 - \frac{2m}{r} \right)\left(1 + \frac{h^2m^2}{r^2} \right).\label{eq:geodesic-time-7} 
 \end{align}
+\end{shaded}
 
 Sin embargo, la ecuación \eqref{eq:geodesic-time-7} implica la condición \eqref{eq:geodesic-time-6}. En efecto, derivando con respecto a $\tau$ la ecuación \eqref{eq:geodesic-time-7}, tenemos que
 \begin{align}
@@ -306,9 +315,108 @@ Por lo tanto, sólo es necesario resolver la ecuación \eqref{eq:geodesic-time-7
 \section{Formulación Lagrangiana y Hamiltoniana}
 
 
-Consideremos el lagrangiano efectivo
+Consideremos el lagrangiano efectivo (tarea 04 - Teoría General de la Relatividad 2023-01):
 \begin{equation}
 L = \frac{1}{2} g_{\mu\nu} \frac{dx^{\mu}}{d\tau}\frac{dx^{\nu}}{d\tau}.
 \end{equation}
 
+Evaluando las componentes de la métrica:
+\begin{shaded}
+\begin{equation}
+L = \frac{1}{2} \left( 1 - \frac{2m}{r}\right)c^2 \dot{t}^2 - \frac{1}{2} \frac{\dot{r}^2}{\left( 1 - \frac{2m}{r}\right) }  - \frac{1}{2} r^2 \dot{\theta}^2 - \frac{1}{2} r^2\sin^2\theta \dot{\varphi}^2.
+\end{equation}
+\end{shaded}
+
+Los momentos conjugados para las coordenadas generalizadas $x^{\mu} = (ct,r,\theta,\varphi)$ son 
+\begin{align}
+p_t &= \frac{\partial L}{\partial (c \dot{t})} = \left( 1 - \frac{2m}{r}\right)c \dot{t}, \label{eq:momento-1} \\
+p_r &= \frac{\partial L}{\partial \dot{r}} = - \frac{\dot{r}}{\left( 1 - \frac{2m}{r}\right)}, \label{eq:momento-2}\\
+p_{\theta} &= \frac{\partial L}{\partial \dot{\theta}} = - r^2\dot{\theta}, \label{eq:momento-3}\\
+p_{\varphi} &= \frac{\partial L}{\partial \dot{\varphi}} = - r^2\sin^2\theta \dot{\varphi}. \label{eq:momento-4}
+\end{align}
+
+Como el lagrangiano no depende explícitamente de las coordenadas $ct$ y $r$, éstas son coordenadas cíclicas y por tanto los momentos conjugados $p_t$ y $p_{\varphi}$ son constantes en $\tau$. Además, comparando con \eqref{eq:Cantidades-Conservadas}, 
+\begin{equation}
+k = \frac{p_t}{c}, \quad hmc = - p_{\varphi}.
+\end{equation}
+
+Por otro lado, el hamiltoniano es
+\begin{align}
+H &= p_t c\dot{t} + p_r \dot{r} + p_{\theta} \dot{\theta} + p_{\varphi} \dot{\varphi} - L \nonumber \\
+&= p_t c\dot{t} + p_r \dot{r} + p_{\theta} \dot{\theta} + p_{\varphi} \dot{\varphi} - \frac{1}{2} \left( 1 - \frac{2m}{r}\right)c^2 \dot{t}^2 + \frac{1}{2} \frac{\dot{r}^2}{\left( 1 - \frac{2m}{r}\right) }  + \frac{1}{2} r^2 \dot{\theta}^2 + \frac{1}{2} r^2\sin^2\theta \dot{\varphi}^2. \label{eq:pre-Hamiltonian}
+\end{align}
+
+Pero el hamiltoniano solo depende de las coordenadas generalizadas y sus respectivos momentos conjugados. Entonces, despejando las velocidades generalizadas en \eqref{eq:momento-1}-\eqref{eq:momento-4}, tenemos que
+\begin{align}
+ c \dot{t} &= \frac{p_t}{\left( 1 - \frac{2m}{r}\right)}, \label{eq:vel-1} \\
+\dot{r} &=  - \left( 1 - \frac{2m}{r}\right) p_r, \label{eq:vel-2}\\
+\dot{\theta} &= - \frac{p_{\theta}}{r^2}, \label{eq:vel-3} \\
+\dot{\varphi} &= - \frac{p_{\varphi}}{r^2\sin^2\theta}. \label{eq:vel-4}
+\end{align}
+
+Reemplazando \eqref{eq:vel-1}-\eqref{eq:vel-4} en \eqref{eq:pre-Hamiltonian}:
+\begin{align}
+H &= \frac{p_t^2}{\left(1 -\frac{2m}{r} \right)} - \left(1 -\frac{2m}{r} \right) p_r^2 - \frac{p_{\theta}^2}{r^2} - \frac{p_{\varphi}^2}{r^2\sin^2\theta} \nonumber \\
+&\quad - \frac{1}{2} \left( 1 - \frac{2m}{r}\right)\frac{p_t^2}{\left( 1 - \frac{2m}{r}\right)^2} + \frac{1}{2}\left( 1 - \frac{2m}{r}\right)^2 \frac{p_r^2}{\left( 1 - \frac{2m}{r}\right) }  + \frac{1}{2} r^2 \frac{p_{\theta}^2}{r^4} + \frac{1}{2} r^2\sin^2\theta \frac{p_{\varphi}^2}{r^4\sin^4\theta} \nonumber \\
+&= \frac{p_t^2}{\left(1 -\frac{2m}{r} \right)} - \left(1 -\frac{2m}{r} \right) p_r^2 - \frac{p_{\theta}^2}{r^2} - \frac{p_{\varphi}^2}{r^2\sin^2\theta} - \frac{1}{2}\frac{p_t^2}{\left( 1 - \frac{2m}{r}\right)} + \frac{1}{2}\left( 1 - \frac{2m}{r}\right) p_r^2  + \frac{1}{2}  \frac{p_{\theta}^2}{r^2} + \frac{1}{2} \frac{p_{\varphi}^2}{r^2\sin^2\theta} \nonumber \\
+&= \frac{1}{2}\frac{p_t^2}{\left(1 -\frac{2m}{r} \right)} - \frac{1}{2} \left(1 -\frac{2m}{r} \right) p_r^2 - \frac{1}{2}\frac{p_{\theta}^2}{r^2} - \frac{1}{2} \frac{p_{\varphi}^2}{r^2\sin^2\theta}.
+\end{align}
+
+Por lo tanto, el hamiltoniano está dado por
+\begin{shaded}
+\begin{equation}
+H = \frac{1}{2}\frac{p_t^2}{\left(1 -\frac{2m}{r} \right)} - \frac{1}{2} \left(1 -\frac{2m}{r} \right) p_r^2 - \frac{1}{2}\frac{p_{\theta}^2}{r^2} - \frac{1}{2} \frac{p_{\varphi}^2}{r^2\sin^2\theta}.
+\end{equation}
+\end{shaded}
+
+Las ecuaciones de Hamilton son:
+\begin{align}
+c \dot{t} &= \frac{\partial H}{\partial p_t} = \frac{p_t}{\left( 1 - \frac{2m}{r}\right)}, \label{eq:Hamilton-1} \\
+\dot{r} &= \frac{\partial H}{\partial p_r} = -  \left(1 -\frac{2m}{r} \right) p_r \label{eq:Hamilton-2}, \\
+\dot{\theta} &= \frac{\partial H}{\partial p_{\theta}} = - \frac{p_{\theta}}{r^2} \label{eq:Hamilton-3}, \\
+\dot{\varphi} &= \frac{\partial H}{\partial p_{\varphi}} = - \frac{p_{\varphi}}{r^2\sin^2\theta}, \label{eq:Hamilton-4}\\
+\dot{p}_t &= - \frac{\partial H}{\partial (ct)} = 0, \label{eq:Hamilton-5}\\
+\dot{p}_r &= - \frac{\partial H}{\partial r} = \frac{m}{(r - 2m)^2} p_t^2 + \frac{m}{r^2} p_r^2 - \frac{p_{\theta}^2}{r^3} - \frac{p_{\varphi}^2}{r^3\sin^2\theta}, \label{eq:Hamilton-6} \\
+\dot{p}_{\theta} &= - \frac{\partial H}{\partial \theta} =  \frac{\cos\theta }{r^2 \sin^3\theta} p_{\varphi}^2,  \label{eq:Hamilton-7} \\
+\dot{p}_{\varphi} &= - \frac{\partial H}{\partial \varphi} = 0. \label{eq:Hamilton-8}
+\end{align}
+
+
+Las ecuaciones \eqref{eq:Hamilton-5} y \eqref{eq:Hamilton-8} nos dicen lo que ya sabíamos, que hay cantidades conservadas asociadas a la energía y al momento angular. Estas cantidades se relacionan con la primera derivada de las coordenadas $t$ y $\varphi$ dadas por las ecuaciones \eqref{eq:Hamilton-1} y \eqref{eq:Hamilton-4}. Mostremos que las ecuaciones \eqref{eq:Hamilton-2} y \eqref{eq:Hamilton-6} implican \eqref{eq:geod-time-2} y que las ecuaciones \eqref{eq:Hamilton-3} y \eqref{eq:Hamilton-7} implican \eqref{eq:geod-time-3}. 
+
+Derivando la ecuación \eqref{eq:Hamilton-2} con respecto a $\tau$:
+\begin{equation} \label{eq:Hamilton-9}
+\ddot{r} = - \frac{2m}{r^2} \dot{r} p_r - \left( 1 - \frac{2m}{r}\right) \dot{p}_r.
+\end{equation} 
+
+Reemplazando la ecuación \eqref{eq:Hamilton-6} en \eqref{eq:Hamilton-9}:
+\begin{equation}
+\ddot{r} = - \frac{2m}{r^2} \dot{r} p_r - \left( 1 - \frac{2m}{r}\right) \left( \frac{m}{(r - 2m)^2} p_t^2 + \frac{m}{r^2} p_r^2 - \frac{p_{\theta}^2}{r^3} - \frac{p_{\varphi}^2}{r^3\sin^2\theta}  \right).
+\end{equation} 
+
+Sustituyendo las expresiones para los momentos conjugados \eqref{eq:momento-1}-\eqref{eq:momento-4}:
+\begin{align}
+\ddot{r} &= \frac{2m}{r^2} \frac{\dot{r}^2}{\left( 1 - \frac{2m}{r}\right)} - \left( 1 - \frac{2m}{r}\right) \left( \frac{m}{(r - 2m)^2}  \left( 1 - \frac{2m}{r}\right)^2 c^2 \dot{t}^2 + \frac{m}{r^2} \frac{\dot{r}^2}{\left( 1 - \frac{2m}{r}\right)^2} - \frac{r^4\dot{\theta}^2}{r^3} - \frac{r^4 \sin^4\theta \dot{\varphi}^2}{r^3\sin^2\theta}  \right)  \nonumber \\
+&= \frac{2m}{r^2} \frac{\dot{r}^2}{\left( 1 - \frac{2m}{r}\right)} - \frac{(r-2m)}{r} \frac{m}{(r-2m)^2} \frac{(r-2m)^2}{r^2} c^2 \dot{t}^2 - \frac{m}{r^2} \frac{\dot{r}^2}{\left( 1 - \frac{2m}{r}\right)} + \frac{(r-2m)}{r} r \dot{\theta}^2 + \frac{(r-2m)}{r} r \sin^2\theta \dot{\varphi}^2 \nonumber \\
+&= \frac{m}{r(r-2m)} \dot{r}^2 - \frac{mc^2(r-2m)}{r^3} \dot{t}^2 + (r-2m)\left[ \dot{\theta}^2 + \sin^2\theta \dot{\varphi}^2\right]
+\end{align}
+
+Ahora, derivando la ecuación \eqref{eq:Hamilton-3} con respecto a $\tau$:
+\begin{equation} \label{eq:Hamilton-10}
+\ddot{\theta} = \frac{2\dot{r} p_{\theta}}{r^3} + \frac{\dot{p}_{\theta}}{r^2}.
+\end{equation} 
+
+Reemplazando la ecuación \eqref{eq:Hamilton-7} en \eqref{eq:Hamilton-10}:
+\begin{equation}
+\ddot{\theta} = \frac{2\dot{r} p_{\theta}}{r^3} +  \frac{\cos\theta }{r^4 \sin^3\theta}p_{\varphi}^2 .
+\end{equation}
+
+Sustituyendo las expresiones para los momentos conjugados \eqref{eq:momento-3} y \eqref{eq:momento-4}:
+\begin{align}
+\ddot{\theta} &= - \frac{2 r^2\dot{r} \dot{\theta}}{r^3} +  \frac{r^4\sin^4\theta \cos\theta \dot{\varphi}^2}{r^4 \sin^3\theta} \nonumber  \\
+&= - \frac{2}{r} \dot{r}\dot{\theta} +  \sin\theta\cos\theta \dot{\varphi}^2.
+\end{align}
+
+
 \end{document}
+
