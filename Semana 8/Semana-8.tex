@@ -262,12 +262,47 @@ Con este resultado podemos evaluar el intervalo (de coordenada temporal) $(\Delt
 &\quad  + m \left(\sqrt{\frac{r_{\text{V}} - r_0}{r_{\text{V}} + r_0}} + \sqrt{\frac{r_{\text{T}} - r_0}{r_{\text{T}} + r_0}}\right) + \mathcal{O}(\epsilon^2).
 \end{align}
 
+Por lo tanto,
+\begin{shaded}
+\begin{align}
+\frac{c}{2} (\Delta t)_{\text{ir}} &= \sqrt{r_{\text{V}}^2 - r_0^2} + \sqrt{r_{\text{T}}^2 - r_0^2} + 2m \ln\left[\frac{\left(r_{\text{V}} + \sqrt{r_{\text{V}}^2 - r_0^2}\right)\left(r_{\text{T}} + \sqrt{r_{\text{T}}^2 - r_0^2}\right)}{r_0^2} \right] \nonumber\\
+&\quad  + m \left(\sqrt{\frac{r_{\text{V}} - r_0}{r_{\text{V}} + r_0}} + \sqrt{\frac{r_{\text{T}} - r_0}{r_{\text{T}} + r_0}}\right) + \mathcal{O}(\epsilon^2).
+\end{align}
+\end{shaded}
+
+Por otro lado, la relación entre el tiempo propio y el elemento de línea es
+\begin{equation}
+c^2d\tau^2 = g_{\mu\nu} dx^{\mu} dx^{\nu}.
+\end{equation}
+
+En particular, para un observador en $r_{\text{T}}$, 
+\begin{equation}
+d\tau = \sqrt{1 - \frac{2m}{r_{\text{T}}}}  dt. 
+\end{equation}
+
+
+Luego, el tiempo propio que registra un observador en $r_{\text{T}}$, en el viaje de ida y regreso del fotón es dado por
+\begin{equation}
+(\Delta \tau)_{\text{ir}} = \sqrt{1 - \frac{2m}{r_{\text{T}}}} (\Delta t)_{\text{ir}}.
+\end{equation}
+
+A primer orden en $m/r_{\text{T}}$:
+\begin{equation}
+(\Delta \tau)_{\text{ir}} = \left(1 - \frac{m}{r_{\text{T}}} \right) (\Delta t)_{\text{ir}} + \mathcal{O}\left( \frac{m^2}{r_{\text{T}}^2}\right).
+\end{equation}
+
 En el caso que $r_0 = R_{\odot} \ll r_{\text{V}}, r_{\text{T}}$ (``conjunción superior") el efecto es máximo:
 \begin{align}
 \frac{c}{2} (\Delta t)_{\text{ir}} &\approx 2 \left[ r_{\text{V}} + r_{\text{T}}  +2m \ln\left( \frac{(r_{\text{V}} + r_{\text{V}})(r_{\text{T}} + r_{\text{T}})}{R_{\odot}^2}\right) + m \left( \sqrt{\frac{1 - \frac{r_0}{r_{\text{V}}}}{1 + \frac{r_0}{r_{\text{V}}}}} + \sqrt{\frac{1 - \frac{r_0}{r_{\text{T}}}}{1 + \frac{r_0}{r_{\text{T}}}}} \right)\right] \nonumber\\
 &\approx 2 \left[ r_{\text{V}} + r_{\text{T}} + 2m \ln\left(\frac{4r_{\text{V}} r_{\text{T}}}{R_{\odot}^2}\right)+ m \left( \sqrt{\left(1 - \frac{r_0}{r_{\text{V}}}\right)\left(1 + \frac{r_0}{r_{\text{V}}}\right)} + \sqrt{\left(1 - \frac{r_0}{r_{\text{T}}}\right)\left(1 + \frac{r_0}{r_{\text{T}}}\right)}\right) \right] \nonumber\\
 &\approx  2 \left[ r_{\text{V}} + r_{\text{T}} + 2m \ln\left(\frac{4r_{\text{V}} r_{\text{T}}}{R_{\odot}^2}\right)+ m(1 + 1) \right] \nonumber\\
-&= 2 \left[(r_{\text{V}} + r_{\text{T}}) + 2m \left(1 + \ln\left[\frac{4r_{\text{V}} r_{\text{T}}}{R_{\odot}^2}\right]\right)\right]. \label{eq:Shapiro-9}
+&= 2 \left[(r_{\text{V}} + r_{\text{T}}) + 2m \left(1 + \ln\left[\frac{4r_{\text{V}} r_{\text{T}}}{R_{\odot}^2}\right]\right)\right], \label{eq:Shapiro-9}
 \end{align}
+es decir,
+\begin{shaded}
+\begin{equation}
+\frac{c}{2} (\Delta t)_{\text{ir}} \approx 2 \left[(r_{\text{V}} + r_{\text{T}}) + 2m \left(1 + \ln\left[\frac{4r_{\text{V}} r_{\text{T}}}{R_{\odot}^2}\right]\right)\right].
+\end{equation}
+\end{shaded}
 
 \end{document}
