@@ -1,0 +1,392 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsfonts,amsmath,amssymb,float, amsthm,mathrsfs}  
+\usepackage[right=4.5cm,left=2cm,top=3cm,bottom=3cm,headsep= 0.7cm,footskip=0.5cm]{geometry}
+\usepackage{enumerate}
+\usepackage{wrapfig} 
+\usepackage[rflt]{floatflt} 
+\usepackage{framed}
+%\usepackage[most]{tcolorbox}
+\usepackage[dvipsnames]{xcolor}
+\colorlet{shadecolor}{green!20}
+\setlength\FrameSep{0.5ex}
+\usepackage{thmtools}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{listings} 
+\usepackage{pstricks, caption}
+\usepackage[colorlinks]{hyperref}
+\usepackage{csquotes}
+\usepackage{fullpage}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\tdplotsetmaincoords{80}{70}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows,babel}
+\usepackage[font=small]{caption}
+\usepackage{scalerel} %\scaleto{text}{size}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+\usepackage{comment}
+\usepackage{marginnote}
+\usepackage{tensor}
+\usepackage{cleveref}
+\newcommand{\dbar}{\mathchar'26\mkern-12mu d}
+\renewcommand*{\marginnotevadjust}{-0.1cm}
+\renewcommand*{\marginfont}{\footnotesize}
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-14.49998pt}
+\setlength{\headsep}{15pt}
+\setlength{\footskip}{14.49998pt}
+\decimalpoint
+\newcommand{\grad}{^\circ}
+\newlength{\drop}
+\DeclareMathOperator{\sign}{sgn}
+\DeclareMathOperator{\Log}{Log}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\let\cancelorigcolor\CancelColor% Just for conveniency...
+
+\newcommand{\CancelTo}[3][]{%
+  \ifblank{#1}{}{%
+    \renewcommand{\CancelColor}{#1}%
+  }
+  \cancelto{#2}{#3}% 
+}
+
+
+\begin{document}
+
+\pagestyle{plain}
+
+\begin{flushleft}\vspace{-2cm}
+Departamento de Física \\
+Facultad de Cs. Físicas y Matemáticas\\
+Universidad de Concepción
+\end{flushleft}
+
+\begin{flushright}\vspace{-1.5cm}
+\textbf{Tópicos en Relatividad General} 
+\end{flushright}
+
+
+
+\rule{\linewidth}{0.1mm}
+
+\begin{center}
+\textbf{\LARGE Semana 10}
+\end{center}
+
+\begin{flushleft}
+\textbf{Nombre:} Alejandro Saavedra San Martín. \\
+\textbf{Profesor:} Guillermo Rubilar Alegría.
+\end{flushleft}
+
+\section*{Campos gravitacionales débiles y ondas gravitacionales}
+
+\subsection*{Expansión en potencias de $G$}
+
+Asumiendo que el campo gravitacional es débil, pero no necesariamente estacionario, es posible desarrollar un método perturbativo para expresar las soluciones de las ecuaciones de Einstein como una serie de términos, cado uno proporcional a una potencia dada de la constante de gravitación $G$. La motivación viene de que al resolver las ecuaciones de campo
+\colorlet{shadecolor}{red!20}
+\begin{shaded}
+\begin{equation}
+R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R = \frac{8\pi G}{c^4} T_{\mu\nu},
+\end{equation}
+\end{shaded}
+para la métrica $g_{\mu\nu}$, podemos escribir
+\begin{equation}
+g_{\mu\nu} = f_{\mu\nu} \left(  \frac{8\pi G}{c^4} T_{\mu\nu} \right),
+\end{equation}
+considerando conocido el tensor de energía-momentum con $f_{\mu\nu}$  una función no lineal que puede expandirse en serie de potencias del argumento, que contiene a la constante $G$. Por ejemplo, si expandemos en serie el coeficiente métrico asociado a la coordenada radial de la métrica de Schwarzschild, en coordenadas de curvatura,
+\begin{equation}
+g_{rr} = - \frac{1}{1 - \frac{2GM}{c^2r}} = - 1 -  \frac{2GM}{c^2r} -  \left(\frac{2GM}{c^2r}\right)^2 - \cdots
+\end{equation}
+
+Es importante aclarar que el tensor de energía-momentum no siempre es conocido porque puede depender de $g_{\mu\nu}$, por ejemplo, el tensor de energía-momentum para un fluido perfecto es
+\begin{equation}
+T_{\mu\nu} = \left( \rho + \frac{P}{c^2}\right) u_{\mu} u_{\nu} - Pg_{\mu\nu}.
+\end{equation}
+
+Por tanto, también tiene que expandirse en serie de potencias de $G$.
+
+Dicho lo anterior, escribamos la métrica como 
+\begin{equation}
+g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}, \quad |h_{\mu\nu}| \ll 1,
+\end{equation}
+donde $\eta$ es la métrica plana y usaremos coordenadas ``cuasi-inerciales" $x^{\mu}$ tales que $\eta_{\mu\nu} = diag(+1,-1,$ $-1,-1)$. Además, separaremos la perturbación $h_{\mu\nu}$ en una serie de potencias en $G$, de modo que
+\begin{equation}
+h_{\mu\nu} = h^{(1)}_{\mu\nu} + h^{(2)}_{\mu\nu} + h^{(3)}_{\mu\nu} + \cdots,
+\end{equation}
+donde $h^{(n)}_{\mu\nu}$, $n = 0,1,\dots$, con $h^{(0)}_{\mu\nu} = \eta_{\mu\nu}$, denota el término proporcional a $G^n$.
+
+Como la métrica se expande en serie de potencias, la conexión, la curvatura, el tensor de Eisntein y el tensor de energía-momentum, se expanden también en potencias de $G$ como sigue:
+\begin{align}
+\Gamma_{\mu\nu}^{\lambda} &= \Gamma_{(0)\mu\nu}^{\lambda} + \Gamma_{(1)\mu\nu}^{\lambda} + \Gamma_{(2)\mu\nu}^{\lambda} + \cdots, \label{eq:conexion} \\
+R_{\mu\nu} &= R_{\mu\nu}^{(0)} + R_{\mu\nu}^{(1)} + R_{\mu\nu}^{(2)} + \cdots, \label{eq:Ricci} \\
+G_{\mu\nu} &= G_{\mu\nu}^{(0)} + G_{\mu\nu}^{(1)} + G_{\mu\nu}^{(2)} + \cdots, \label{eq:Einstein-Tensor} \\
+T_{\mu\nu} &= T_{\mu\nu}^{(0)} + T_{\mu\nu}^{(1)} + T_{\mu\nu}^{(2)} + \cdots. \label{eq:Energy-Momentum-Tensor}
+\end{align}
+
+Veremos más adelante que al ser el término de orden cero la métrica plana (en coordenadas donde ésta es constante), los términos de orden cero de la conexión, la curvatura y el tensor de Einstein son nulos.
+
+Con esto, las ecuaciones de Einstein adoptan la forma
+\begin{equation}
+G_{\mu\nu}^{(1)} + G_{\mu\nu}^{(2)}  + G_{\mu\nu}^{(3)}  + \cdots = \frac{8\pi G}{c^4} \left( T_{\mu\nu}^{(0)} + T_{\mu\nu}^{(1)} + T_{\mu\nu}^{(2)} + \cdots   \right),
+\end{equation}
+si igualamos los términos de acuerdo al orden de $G$, obtenemos que
+\begin{align}
+G_{\mu\nu}^{(1)} &= \frac{8\pi G}{c^4} T_{\mu\nu}^{(0)}, \label{eq:Einstein-First-Order} \\
+G_{\mu\nu}^{(2)} &= \frac{8\pi G}{c^4} T_{\mu\nu}^{(1)}, \\
+G_{\mu\nu}^{(3)} &= \frac{8\pi G}{c^4} T_{\mu\nu}^{(2)},
+\end{align}
+etc.
+
+\subsection*{Expansión a primer orden}
+
+\subsubsection*{Métrica:}
+
+Calculemos la métrica inversa $g^{\mu\nu}$, para ello consideremos
+\begin{equation}
+g^{\mu\nu} = g_{(0)}^{\mu\nu} + g_{(1)}^{\mu\nu} + \mathcal{O}(G^2).
+\end{equation}
+
+Entonces, como la contracción de la métrica y su inversa da la identidad,
+\begin{align}
+g^{\mu\nu} g_{\nu\lambda} &= \delta^{\mu}_{\lambda} \\
+\left( g_{(0)}^{\mu\nu} + g_{(1)}^{\mu\nu} + \mathcal{O}(G^2)\right) \left(\eta_{\nu\lambda} + h_{\nu\lambda}^{(1)} + \mathcal{O}(G^2) \right) &= \delta^{\mu}_{\lambda} \\
+\left(g_{(0)}^{\mu\nu} \eta_{\nu\lambda}\right) + \left(g_{(0)}^{\mu\nu} h_{\nu\lambda}^{(1)} +  g_{(1)}^{\mu\nu} \eta_{\nu\lambda} \right) + \mathcal{O}(G^2)  &= \delta^{\mu}_{\lambda}
+\end{align} 
+
+Igualando los términos que tienen el mismo orden de $G$, obtenemos primero que
+\begin{align}
+g_{(0)}^{\mu\nu} \eta_{\nu\lambda} &=  \delta^{\mu}_{\lambda} \\
+g_{(0)}^{\mu\nu} \eta_{\nu\lambda} \textcolor{red}{\eta^{\lambda \sigma}} &= \delta^{\mu}_{\lambda} \textcolor{red}{\eta^{\lambda \sigma}} \\
+g_{(0)}^{\mu\nu} \delta_{\nu}^{\sigma}&= \eta^{\mu\sigma}  \\
+g_{(0)}^{\mu\sigma} &= \eta^{\mu\sigma}.
+\end{align}
+
+Haciendo un cambio de índice pertinente:
+\colorlet{shadecolor}{green!20}
+\begin{shaded}
+\begin{equation}
+g_{(0)}^{\mu\nu} = \eta^{\mu\nu}. \label{eq:First-Order-1}
+\end{equation}
+\end{shaded}
+
+En segundo lugar,
+\begin{align}
+g_{(0)}^{\mu\nu} h_{\nu\lambda}^{(1)} +  g_{(1)}^{\mu\nu} \eta_{\nu\lambda}  &= 0 \\
+g_{(1)}^{\mu\nu} \eta_{\nu\lambda}  \textcolor{red}{\eta^{\lambda \sigma}} &= - g_{(0)}^{\mu\nu} h_{\nu\lambda}^{(1)} \textcolor{red}{\eta^{\lambda \sigma}} \\
+g_{(1)}^{\mu\nu} \delta_{\nu}^{\sigma} &= - g_{(0)}^{\mu\nu} \eta^{\lambda \sigma}  h_{\nu\lambda}^{(1)} \\
+g_{(1)}^{\mu\sigma} &= - g_{(0)}^{\mu\nu} \eta^{\lambda \sigma}  h_{\nu\lambda}^{(1)}. \label{eq:First-Order-2}
+\end{align}
+
+Reemplazando \eqref{eq:First-Order-1} en \eqref{eq:First-Order-2}:
+\begin{equation}
+g_{(1)}^{\mu\sigma} = - \eta^{\mu\nu} \eta^{\lambda \sigma}  h_{\nu\lambda}^{(1)}.
+\end{equation}
+
+Haciendo un cambio de índice pertinente, 
+\colorlet{shadecolor}{green!20}
+\begin{shaded}
+\begin{equation}
+g_{(1)}^{\mu\nu}  = - \eta^{\mu\alpha} \eta^{\nu\beta} h_{\alpha\beta}^{(1)}. \label{eq:First-Order-3}
+\end{equation}
+\end{shaded}
+
+\subsubsection*{Conexión:}
+
+Por otro lado, usando la definición de los símbolos de Christoffel, tenemos que 
+\begin{align}
+\Gamma^{\lambda}_{\ \mu\nu} &= \frac{1}{2} g^{\lambda\alpha} \left(\partial_{\mu} g_{\alpha\nu} + \partial_{\nu} g_{\mu\alpha} - \partial_{\alpha} g_{\mu\nu}\right) \nonumber\\
+&= \frac{1}{2} \left[ g_{(0)}^{\lambda\alpha} + g_{(1)}^{\lambda\alpha} + \mathcal{O}(G^2) \right] \left[ \partial_{\mu}\left(\eta_{\alpha\nu} + h^{(1)}_{\alpha\nu}\right) + \partial_{\nu}\left(\eta_{\mu\alpha} + h^{(1)}_{\mu\alpha}\right) - \partial_{\alpha} \left(\eta_{\mu\nu} + h^{(1)}_{\mu\nu}\right) + \mathcal{O}(G^2)  \right] \nonumber\\
+&=  \frac{1}{2} \left[ \eta^{\lambda\alpha} + g_{(1)}^{\lambda\alpha} + \mathcal{O}(G^2) \right] \left[ \partial_{\mu} h^{(1)}_{\alpha\nu} + \partial_{\nu} h^{(1)}_{\mu\alpha} - \partial_{\alpha} h^{(1)}_{\mu\nu} + \mathcal{O}(G^2)  \right] \nonumber\\
+&= \frac{1}{2}  \eta^{\lambda \alpha} \left( \partial_{\mu} h^{(1)}_{\alpha\nu} + \partial_{\nu} h^{(1)}_{\mu\alpha} - \partial_{\alpha} h^{(1)}_{\mu\nu} \right) + \mathcal{O}(G^2)  
+\end{align}
+
+Comparando los términos según la potencia de $G$ con \eqref{eq:conexion}, encontramos que
+\begin{shaded}
+\begin{equation}
+\Gamma^{\lambda}_{(0) \mu\nu} = 0 \label{eq:First-Order-4} 
+\end{equation}
+\end{shaded}
+y 
+\begin{equation}
+\Gamma^{\lambda}_{(1) \mu\nu} = \frac{1}{2}  \eta^{\lambda \alpha} \left( \partial_{\mu} h^{(1)}_{\alpha\nu} + \partial_{\nu} h^{(1)}_{\mu\alpha} - \partial_{\alpha} h^{(1)}_{\mu\nu} \right). \label{eq:First-Order-5}
+\end{equation}
+
+Si asumimos la siguiente convención: subimos y bajamos los índices usando la métrica plana $\eta$. Así, por ejemplo, $h^{(1)} := h_{(1)\mu}^{\mu} = \eta^{\mu\nu} h_{\mu\nu}^{(1)}$ es la traza del tensor $h_{\mu\nu}^{(1)}$ y $\square := \partial_{\mu}\partial^{\mu} = \eta^{\mu\nu}\partial_{\mu}\partial_{\nu}$ es el operador de onda. Usando esta convención, podemos escribir la ecuación \eqref{eq:First-Order-5} como
+\begin{shaded}
+\begin{align}
+\Gamma^{\lambda}_{(1) \mu\nu} &= \frac{1}{2}  \eta^{\lambda \alpha} \left( \partial_{\mu} h^{(1)}_{\alpha\nu} + \partial_{\nu} h^{(1)}_{\mu\alpha} - \partial_{\alpha} h^{(1)}_{\mu\nu} \right) \nonumber\\
+&= \frac{1}{2} \left(\partial_{\mu} h_{(1)\nu}^{\lambda} + \partial_{\nu} h_{(1)\mu}^{\lambda} - \partial^{\lambda} h_{\mu\nu}^{(1)} \right). \label{eq:First-Order-6}
+\end{align}
+\end{shaded}
+
+\subsubsection*{Tensor de curvatura de Riemann:}
+
+Considerando que 
+\begin{equation}
+R_{\ \mu\nu\lambda}^{\rho} = R_{(0) \mu\nu\lambda}^{\rho} + R_{(1) \mu\nu\lambda}^{\rho} + R_{(2) \mu\nu\lambda}^{\rho} + \cdots 
+\end{equation}
+
+Usando la definición del tensor de Riemann, 
+\begin{equation}
+R_{\ \mu\nu\lambda}^{\rho} = \partial_{\nu} \Gamma^{\rho}_{\ \lambda \mu} - \partial_{\lambda} \Gamma^{\rho}_{\ \nu \mu} + \Gamma^{\rho}_{\ \nu\sigma} \Gamma^{\sigma}_{\ \lambda\mu} + \Gamma^{\rho}_{\ \lambda\sigma} \Gamma^{\sigma}_{\ \nu\mu}.
+\end{equation}
+
+Como el término de orden cero de los símbolos de Christoffel es nulo, el término de orden cero del tensor de Riemmann también es nulo. Por tanto, los productos de símbolos de Christoffel no contribuyen al término de primer orden en $G$ de $R_{\ \mu\nu\lambda}^{\rho}$. Entonces, usando \eqref{eq:First-Order-6}, tenemos que
+\begin{align}
+R_{\ \mu\nu\lambda}^{\rho} &= \partial_{\nu} \Gamma^{\rho}_{\ \lambda \mu} - \partial_{\lambda} \Gamma^{\rho}_{\ \nu \mu} + \Gamma^{\rho}_{\ \nu\sigma} \Gamma^{\sigma}_{\ \lambda\mu} + \Gamma^{\rho}_{\ \lambda\sigma} \Gamma^{\sigma}_{\ \nu\mu} \nonumber \\
+&= \frac{1}{2 }\partial_{\nu} \left(\partial_{\lambda} h_{(1)\mu}^{\rho} + \partial_{\mu} h_{(1)\lambda}^{\rho} - \partial^{\rho} h_{\lambda\mu}^{(1)} \right) - \frac{1}{2}\partial_{\lambda} \left(\partial_{\nu} h_{(1)\mu}^{\rho} + \partial_{\mu} h_{(1)\nu}^{\rho} - \partial^{\rho} h_{\nu\mu}^{(1)} \right) + \mathcal{O}(G^2) \nonumber \\
+&= \frac{1}{2}\partial_{\nu} \partial_{\lambda} h_{(1)\mu}^{\rho} + \frac{1}{2}\partial_{\nu} \partial_{\mu} h_{(1)\lambda}^{\rho} - \frac{1}{2}\partial_{\nu} \partial^{\rho} h_{\lambda\mu}^{(1)} - \frac{1}{2}\partial_{\lambda} \partial_{\nu} h_{(1)\mu}^{\rho} - \frac{1}{2}\partial_{\lambda} \partial_{\mu} h_{(1)\nu}^{\rho} + \frac{1}{2}\partial_{\lambda} \partial^{\rho} h_{\nu\mu}^{(1)} + \mathcal{O}(G^2) \nonumber\\
+&= \cancel{\frac{1}{2}\partial_{\nu} \partial_{\lambda} h_{(1)\mu}^{\rho}} + \frac{1}{2}\partial_{\nu} \partial_{\mu} h_{(1)\lambda}^{\rho} - \frac{1}{2}\partial_{\nu} \partial^{\rho} h_{\lambda\mu}^{(1)} - \cancel{\frac{1}{2}\partial_{\nu} \partial_{\lambda} h_{(1)\mu}^{\rho}} - \frac{1}{2}\partial_{\lambda} \partial_{\mu} h_{(1)\nu}^{\rho} + \frac{1}{2}\partial_{\lambda} \partial^{\rho} h_{\nu\mu}^{(1)} + \mathcal{O}(G^2) \nonumber\\
+&= \frac{1}{2} \left(\partial_{\nu} \partial_{\mu} h_{(1)\lambda}^{\rho} - \partial_{\nu} \partial^{\rho} h_{\lambda\mu}^{(1)} -\partial_{\lambda} \partial_{\mu} h_{(1)\nu}^{\rho} + \partial_{\lambda} \partial^{\rho} h_{\nu\mu}^{(1)} \right) + \mathcal{O}(G^2). \label{eq:First-Order-7}
+\end{align}
+
+Por lo tanto, el término a primer orden en $G$ del tensor de Riemann es
+\begin{shaded}
+\begin{equation}
+R_{(1)\mu\nu\lambda}^{\rho} = \frac{1}{2} \left(\partial_{\mu} \partial_{\nu} h_{(1)\lambda}^{\rho} -\partial_{\mu} \partial_{\lambda} h_{(1)\nu}^{\rho} + \partial_{\lambda} \partial^{\rho} h_{\mu\nu}^{(1)} - \partial_{\nu} \partial^{\rho} h_{\mu\lambda}^{(1)}  \right). \label{eq:First-Order-8}
+\end{equation}
+\end{shaded}
+
+\subsubsection*{Tensor de Ricci:}
+
+El tensor de Ricci está dado por
+\begin{equation}
+R_{\mu\nu} = R^{\rho}_{\ \mu\rho\nu} = R_{\mu\nu}^{(0)} + R_{\mu\nu}^{(1)} + R_{\mu\nu}^{(2)} + \cdots 
+\end{equation}
+
+Como consecuencia de \eqref{eq:First-Order-7}, el término de orden cero es nulo y el de primer orden es
+\begin{align}
+R^{(1)}_{\mu\lambda} &= R^{\rho}_{(1)\mu\rho\lambda} \nonumber \\
+&= \frac{1}{2} \left(\partial_{\mu} \partial_{\rho} h_{(1)\lambda}^{\rho} -\partial_{\mu} \partial_{\lambda} h_{(1)\rho}^{\rho} + \partial_{\lambda} \partial^{\rho} h_{\mu\rho}^{(1)} - \partial_{\rho} \partial^{\rho} h_{\mu\lambda}^{(1)}  \right). 
+\end{align}
+
+Si usamos la convención y renombramos índices de suma, tenemos que
+\begin{shaded}
+\begin{equation}
+R^{(1)}_{\mu\lambda} = \frac{1}{2} \left(\partial_{\mu} \partial_{\nu} h_{(1)\lambda}^{\nu} + \partial_{\lambda} \partial^{\nu} h_{\mu\nu}^{(1)}  -\partial_{\mu} \partial_{\lambda} h^{(1)}  - \square h_{\mu\lambda}^{(1)}  \right). \label{eq:First-Order-8}
+\end{equation}
+\end{shaded}
+
+\subsubsection*{Escalar de curvatura:}
+
+El escalar de curvatura está dado por
+\begin{equation}
+R = g^{\mu\nu} R_{\mu\nu} = R^{(0)} + R^{(1)} + R^{(2)} + \cdots
+\end{equation}
+
+Luego, 
+\begin{align}
+R &= g^{\mu\nu} R_{\mu\nu} \\
+&= \left(\eta^{\mu\nu} + g_{(1)}^{ \mu\nu} + \mathcal{O}(G^2)\right) \left(R_{\mu\nu}^{(1)} + \mathcal{O}(G^2) \right) \\
+&= \eta^{\mu\nu} R_{\mu\nu}^{(1)} + \mathcal{O}(G^2).
+\end{align}
+
+El término de orden cero es nulo, pues $R_{\mu\nu}^{(0)} = 0$. Pero, el término de primer orden es
+\begin{align}
+R^{(1)} &= \eta^{\mu\nu} R_{\mu\nu}^{(1)} \nonumber\\
+&= \frac{1}{2} \eta^{\mu\nu} \left(\partial_{\mu} \partial_{\lambda} h_{(1)\nu}^{\lambda} + \partial_{\nu} \partial^{\lambda} h_{\mu\lambda}^{(1)}  -\partial_{\mu} \partial_{\nu} h^{(1)}  - \square h_{\mu\nu}^{(1)}  \right) \nonumber\\
+&= \frac{1}{2} \partial^{\nu} \partial_{\lambda} h_{(1)\nu}^{\lambda} + \frac{1}{2} \partial^{\mu} \partial^{\lambda} h_{\mu\lambda}^{(1)} - \square h^{(1)} \nonumber  \\
+&= \frac{1}{2} \partial^{\mu} \partial^{\lambda} h_{\mu\lambda}^{(1)} + \frac{1}{2} \partial^{\mu} \partial^{\lambda} h_{\mu\lambda}^{(1)} - \square h^{(1)}
+\end{align}
+
+Renombrando índices mudos, concluímos que
+\begin{shaded}
+\begin{equation}
+R^{(1)} = \partial^{\mu}\partial^{\nu}  h_{\mu\nu}^{(1)} - \square h^{(1)}.
+\end{equation}
+\end{shaded}
+
+\subsubsection*{Tensor de Einstein:}
+
+El tensor de Einstein está dado por 
+\begin{equation}
+G_{\mu\nu} = R_{\mu\nu} - \frac{1}{2} g_{\mu\nu} R.
+\end{equation}
+
+Si expandemos en potencias de $G$, la métrica, el tensor de Ricci y el escalar de curvatura, tenemos que
+\begin{align}
+G_{\mu\nu} &= \left(R_{\mu\nu}^{(0)} + R_{\mu\nu}^{(1)} + \mathcal{O}(G^2) \right) - \frac{1}{2} \left( \eta_{\mu\nu} + h_{\mu\nu}^{(1)}  + \mathcal{O}(G^2) \right) \left(R^{(0)} + R^{(1)} + \mathcal{O}(G^2) \right) \nonumber \\
+&= \left(R_{\mu\nu}^{(0)} - \frac{1}{2} \eta_{\mu\nu} R^{(0)} \right) + \left(R_{\mu\nu}^{(1)} - \frac{1}{2} \eta_{\mu\nu} R^{(1)} - \frac{1}{2} h_{\mu\nu}^{(1)} R^{(1)} \right) + \mathcal{O}(G^2).
+\end{align}
+
+Pero, $R_{\mu\nu}^{(0)} = R^{(0)} = 0$. Entonces, el término de orden cero del tensor de Einstein es nulo y el de primer orden está dado por
+\begin{align}
+G_{\mu\nu}^{(1)} &= R_{\mu\nu}^{(1)} - \frac{1}{2}\eta_{\mu\nu} R^{(1)} \nonumber \\
+&= \frac{1}{2} \left(\partial_{\mu} \partial_{\lambda} h_{(1)\nu}^{\lambda} + \partial_{\nu} \partial^{\lambda} h_{\mu\lambda}^{(1)}  - \partial_{\mu} \partial_{\nu} h^{(1)}  - \square h_{\mu\nu}^{(1)}  \right) - \frac{1}{2} \eta_{\mu\nu} \left( \partial^{\lambda}\partial^{\rho}  h_{\lambda\rho}^{(1)} - \square h^{(1)} \right)  \nonumber \\
+&= \frac{1}{2} \left[\partial_{\mu} \partial^{\lambda} h_{\lambda\nu}^{(1)} + \partial_{\nu} \partial^{\lambda} h_{\mu\lambda}^{(1)}  - \partial_{\mu} \partial_{\nu} h^{(1)}  - \square h_{\mu\nu}^{(1)} -  \eta_{\mu\nu} \left( \partial^{\lambda}\partial^{\rho}  h_{\lambda\rho}^{(1)} - \square h^{(1)} \right) \right]. \label{eq:First-Order-8.5}
+\end{align}
+
+Es conveniente definir el tensor $\bar{t}_{\mu\nu}$, asociado a un tensor simétrico $t_{\mu\nu}$, como
+\begin{align}
+\bar{t}_{\mu\nu} &:= t_{\mu\nu} - \frac{1}{2} \eta_{\mu\nu} t \nonumber \\
+&= t_{\mu\nu} - \frac{1}{2} \eta_{\mu\nu} \eta^{\lambda \rho} t_{\lambda\rho}. \label{eq:First-Order-9}
+\end{align}
+
+Es directo verificar que
+\begin{equation}
+\bar{t} := \eta^{\mu\nu} \bar{t}_{\mu\nu} = -t, \quad \bar{\bar{t}}_{\mu\nu} = t_{\mu\nu}.
+\end{equation}
+
+En efecto, reemplazando directamente \eqref{eq:First-Order-9}, obtenemos
+\begin{align}
+\bar{t} &= \eta^{\mu\nu} t_{\mu\nu} - \frac{1}{2} \eta^{\mu\nu} \eta_{\mu\nu} t \nonumber\\
+&= t - \frac{1}{2} \delta_{\mu}^{\mu} t \nonumber\\
+&= t - \frac{4}{2} t \nonumber\\
+&= -t, \\
+\bar{\bar{t}}_{\mu\nu} &= \bar{t}_{\mu\nu} - \frac{1}{2} \eta_{\mu\nu} \bar{t} \nonumber\\
+&= t_{\mu\nu} - \frac{1}{2} \eta_{\mu\nu} t + \frac{1}{2}\eta_{\mu\nu} t \nonumber\\
+&= t_{\mu\nu}.
+\end{align}
+
+Por lo tanto, si reemplazamos 
+\begin{equation}
+h_{\mu\nu}^{(1)} = \bar{h}_{\mu\nu}^{(1)} - \frac{1}{2} \eta_{\mu\nu} \bar{h}^{(1)}, \quad h^{(1)} = - \bar{h}^{(1)},
+\end{equation}
+en \eqref{eq:First-Order-8.5}, encontramos que
+\begin{align}
+G_{\mu\nu}^{(1)} &= \frac{1}{2} \left[\partial_{\mu} \partial^{\lambda} \left(\bar{h}_{\lambda\nu}^{(1)} - \frac{1}{2} \eta_{\lambda\nu} \bar{h}^{(1)}\right) + \partial_{\nu} \partial^{\lambda} \left(\bar{h}_{\mu\lambda}^{(1)} - \frac{1}{2} \eta_{\mu\lambda} \bar{h}^{(1)} \right)  + \partial_{\mu} \partial_{\nu} \bar{h}^{(1)}  - \square \left( \bar{h}_{\mu\nu}^{(1)} - \frac{1}{2} \eta_{\mu\nu} \bar{h}^{(1)}\right) \right. \nonumber\\
+&\quad \left.-  \eta_{\mu\nu} \left( \partial^{\lambda}\partial^{\rho} \left(\bar{h}_{\lambda\rho}^{(1)} - \frac{1}{2} \eta_{\lambda\rho} \bar{h}^{(1)} \right) + \square \bar{h}^{(1)} \right) \right]  \nonumber\\
+&= \frac{1}{2} \left[ \partial_{\mu} \partial^{\lambda} \bar{h}_{\lambda\nu}^{(1)} \textcolor{red}{- \frac{1}{2} \partial_{\mu} \partial_{\nu} \bar{h}^{(1)}} + \partial_{\nu}\partial^{\lambda} \bar{h}_{\mu\lambda}^{(1)} \textcolor{red}{- \frac{1}{2} \partial_{\nu} \partial_{\mu} \bar{h}^{(1)}} + \textcolor{red}{\partial_{\mu}\partial_{\nu} \bar{h}^{(1)}} - \square \bar{h}_{\mu\nu}^{(1)} + \textcolor{blue}{\frac{1}{2} \eta_{\mu\nu} \square \bar{h}^{(1)}} \right. \nonumber\\
+&\quad \left. - \eta_{\mu\nu} \partial^{\lambda}\partial^{\rho} \bar{h}_{\lambda\rho}^{(1)} + \textcolor{blue}{\frac{1}{2} \eta_{\mu\nu} \square \bar{h}^{(1)}} \textcolor{blue}{- \eta_{\mu\nu} \square \bar{h}^{(1)}} \right] \nonumber\\
+&= \frac{1}{2} \left[\partial_{\mu}\partial^{\lambda} \bar{h}^{(1)}_{\lambda\nu} + \partial_{\nu}\partial^{\lambda} \bar{h}^{(1)}_{\mu\lambda} - \square \bar{h}^{(1)}_{\mu\nu} - \eta_{\mu\nu} \partial^{\lambda}\partial^{\rho} \bar{h}^{(1)}_{\lambda\rho} \right].
+\end{align}
+
+Finalmente, el término de primer orden en $G$ del tensor de Einstein está dado por
+\begin{shaded}
+\begin{equation}
+G_{\mu\nu}^{(1)} = - \frac{1}{2} \left[ \square \bar{h}_{\mu\nu}^{(1)} + \eta_{\mu\nu} \partial^{\lambda}\partial^{\rho}\bar{h}_{\lambda\rho}^{(1)}- \partial_{\mu}\partial^{\lambda} \bar{h}_{\lambda \nu}^{(1)} - \partial_{\nu}\partial^{\lambda} \bar{h}_{\lambda\mu}^{(1)}\right].
+\end{equation}
+\end{shaded}
+
+\subsection*{Ecuaciones de Einstein linealizadas}
+
+A primer orden, la ecuación \eqref{eq:Einstein-First-Order} para $h^{(1)}_{\mu\nu}$ es
+\colorlet{shadecolor}{red!20}
+\begin{shaded}
+\begin{equation}
+\square \bar{h}_{\mu\nu}^{(1)} + \eta_{\mu\nu} \partial^{\lambda}\partial^{\rho}\bar{h}_{\lambda\rho}^{(1)}- \partial_{\mu}\partial^{\lambda} \bar{h}_{\lambda \nu}^{(1)} - \partial_{\nu}\partial^{\lambda} \bar{h}_{\lambda\mu}^{(1)} = - \frac{16\pi G}{c^4} T_{\mu\nu}^{(0)}. \label{eq:Einstei-eq-first-order}
+\end{equation}
+\end{shaded}
+
+Notemos además que al operar con $\partial^{\mu}$ a ambos lados de \eqref{eq:Einstei-eq-first-order}, obtenemos que 
+\begin{align}
+\partial^{\mu} \square \bar{h}_{\mu\nu}^{(1)} + \eta_{\mu\nu} \partial^{\mu} \partial^{\lambda}\partial^{\rho}\bar{h}_{\lambda\rho}^{(1)} - \partial^{\mu} \partial_{\mu}\partial^{\lambda} \bar{h}_{\lambda \nu}^{(1)} - \partial^{\mu} \partial_{\nu}\partial^{\lambda} \bar{h}_{\lambda\mu}^{(1)} &= - \frac{16\pi G}{c^4} \partial^{\mu} T_{\mu\nu}^{(0)} \\
+\partial^{\mu}  \square \bar{h}_{\mu\nu}^{(1)} + \partial_{\nu}\partial^{\lambda}\partial^{\rho} \bar{h}_{\lambda\rho}^{(1)} - \partial^{\lambda} \square  \bar{h}^{(1)}_{\lambda \nu} - \partial^{\mu} \partial_{\nu}\partial^{\lambda} \bar{h}^{(1)}_{\lambda\mu} &= - \frac{16\pi G}{c^4} \partial^{\mu} T_{\mu\nu}^{(0)} \\
+\partial^{\mu}  \square \bar{h}_{\mu\nu}^{(1)} + \partial_{\nu}\partial^{\lambda}\partial^{\mu} \bar{h}_{\lambda\mu}^{(1)} - \partial^{\mu} \square  \bar{h}^{(1)}_{\mu \nu} - \partial_{\nu}\partial^{\lambda} \partial^{\mu} \bar{h}^{(1)}_{\lambda\mu} &= - \frac{16\pi G}{c^4} \partial^{\mu} T_{\mu\nu}^{(0)} \\
+0 &= - \frac{16\pi G}{c^4} \partial^{\mu} T_{\mu\nu}^{(0)}.
+\end{align}
+
+Es importante destacar que el operador de onda $\square$ conmuta con la derivada parcial porque en nuestro notación escribimos el operador de onda con derivadas parciales y no con derivadas convariantes, $\square:= \eta^{\mu\nu}\partial_{\mu}\partial_{\nu}$. En consecuencia, el tensor de energía-momentum en el lado derecho de \eqref{eq:Einstei-eq-first-order} debe satisfacer
+\begin{equation}
+\partial^{\mu} T_{\mu\nu}^{(0)} = 0,
+\end{equation}
+es decir, que la energía y el momentum de la materia descrito por $T_{\mu\nu}^{(0)}$ se conserva. Esto es consistente con la interpretación que $T_{\mu\nu}^{(0)}$ describe el contenido de energía-momentum de la materia en ausencia de gravitación.
+\end{document}
