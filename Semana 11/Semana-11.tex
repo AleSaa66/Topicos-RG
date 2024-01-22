@@ -1,0 +1,462 @@
+\documentclass[letterpaper,11pt]{article}
+\usepackage[spanish]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{amsfonts,amsmath,amssymb,float, amsthm,mathrsfs}  
+\usepackage[right=4.5cm,left=2cm,top=3cm,bottom=3cm,headsep= 0.7cm,footskip=0.5cm]{geometry}
+\usepackage{enumerate}
+\usepackage{wrapfig} 
+\usepackage[rflt]{floatflt} 
+\usepackage{framed}
+%\usepackage[most]{tcolorbox}
+\usepackage[dvipsnames]{xcolor}
+\colorlet{shadecolor}{green!20}
+\setlength\FrameSep{0.5ex}
+\usepackage{thmtools}
+\usepackage{esint}
+\usepackage{cancel}
+\usepackage{listings} 
+\usepackage{pstricks, caption}
+\usepackage[colorlinks]{hyperref}
+\usepackage{csquotes}
+\usepackage{fullpage}
+\usepackage{enumitem}
+\usepackage{etoolbox}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+\tdplotsetmaincoords{80}{70}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{arrows,babel}
+\usepackage[font=small]{caption}
+\usepackage{scalerel} %\scaleto{text}{size}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+\usepackage{comment}
+\usepackage{marginnote}
+\usepackage{tensor}
+\usepackage{cleveref}
+\newcommand{\dbar}{\mathchar'26\mkern-12mu d}
+\renewcommand*{\marginnotevadjust}{-0.1cm}
+\renewcommand*{\marginfont}{\footnotesize}
+\setlength{\headheight}{15pt}
+\addtolength{\topmargin}{-14.49998pt}
+\setlength{\headsep}{15pt}
+\setlength{\footskip}{14.49998pt}
+\decimalpoint
+\newcommand{\grad}{^\circ}
+\newlength{\drop}
+\DeclareMathOperator{\sign}{sgn}
+\DeclareMathOperator{\Log}{Log}
+\providecommand{\norm}[1]{\lVert#1\rVert}
+
+\let\cancelorigcolor\CancelColor% Just for conveniency...
+
+\newcommand{\CancelTo}[3][]{%
+  \ifblank{#1}{}{%
+    \renewcommand{\CancelColor}{#1}%
+  }
+  \cancelto{#2}{#3}% 
+}
+
+
+\begin{document}
+
+\pagestyle{plain}
+
+\begin{flushleft}\vspace{-2cm}
+Departamento de Física \\
+Facultad de Cs. Físicas y Matemáticas\\
+Universidad de Concepción
+\end{flushleft}
+
+\begin{flushright}\vspace{-1.5cm}
+\textbf{Tópicos en Relatividad General} 
+\end{flushright}
+
+
+
+\rule{\linewidth}{0.1mm}
+
+\begin{center}
+\textbf{\LARGE Semana 11}
+\end{center}
+
+\begin{flushleft}
+\textbf{Nombre:} Alejandro Saavedra San Martín. \\
+\textbf{Profesor:} Guillermo Rubilar Alegría.
+\end{flushleft}
+
+\section{Campos gravitacionales débiles y ondas gravitacionales}
+
+\subsection{Transformaciones de gauge}
+
+La descomposición de la métrica 
+\begin{equation}
+g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}, \quad |h_{\mu\nu}| \ll 1, \label{eq:Gauge-1}
+\end{equation}
+en coordenadas cuasi-inerciales, no es única. En efecto, como estamos usando un espaciotiempo de ``fondo" plano, el formalismo  es naturalmente covariante bajo transformaciones de Lorentz globales de coordenadas, es decir, bajo transformaciones $x^{\mu} \rightarrow x^{'\mu} = \Lambda^{\mu}_{\ \nu} x^{\nu}$ las componentes de la métrica son transformadas de forma tal que en el nuevo sistema coordenado una descomposición de la forma \eqref{eq:Gauge-1} es también válida, pero en general con perturbaciones $h_{\mu\nu}$ diferentes. Probemos ésto último, bajo transformaciones de Lorentz, tenemos que
+\begin{align}
+g'^{\mu\nu} &= \frac{\partial x'^{\mu}}{\partial x^{\lambda}} \frac{\partial x'^{\nu}}{\partial x^{\rho}} g^{\lambda\rho} \nonumber \\
+&= \Lambda^{\mu}_{\ \lambda} \Lambda^{\nu}_{\ \rho} \left( \eta^{\lambda\rho}+ h^{\lambda\rho}\right) \nonumber \\
+&= \Lambda^{\mu}_{\ \lambda} \Lambda^{\nu}_{\ \rho} \eta^{\lambda \rho} + \Lambda^{\mu}_{\ \lambda} \Lambda^{\nu}_{\ \rho} h^{\lambda\rho}.
+\end{align}
+
+Pero, $\Lambda^{\mu}_{\ \lambda} \Lambda^{\nu}_{\ \rho}\eta^{\lambda \rho} = \eta^{\mu\nu} $. Así,
+\begin{equation}
+g'^{\mu\nu} = \eta^{\mu\nu} + h'^{\mu\nu},
+\end{equation}
+donde $h'^{\mu\nu} = \Lambda^{\mu}_{\ \lambda} \Lambda^{\nu}_{\ \rho} h^{\lambda\rho}$ es la perturbación de la métrica en las nuevas coordenadas $x'^{\mu}$.
+
+Adicionalmente, transformaciones de la forma
+\begin{equation}
+x^{\mu}(P) \rightarrow x'^{\mu}(P) = x^{\mu}(P) + \xi^{\mu}(x(P)), \quad |\xi^{\mu}| \ll 1 \label{eq:gauge-1.5}
+\end{equation}
+(de las coordenadas usadas para etiquetar el evento $P$) conducen a nuevas descomposiciones de la métrica del tipo \eqref{eq:Gauge-1}. En los cálculos siguientes omitiremos la escritura de $P$, pero es importante recordar que las transformaciones se efectúan en un punto de la variedad. Primero calculemos
+\begin{equation}
+\frac{\partial x'^{\mu}}{\partial x^{\alpha}} = \frac{\partial x^{\mu}}{\partial x^{\alpha}} + \frac{\partial \xi^{\mu}}{\partial x^{\alpha}} = \delta^{\mu}_{\alpha} + \partial_{\alpha} \xi^{\mu}. \label{eq:gauge-2}
+\end{equation}
+
+Usando el mismo método presente en el documento de la semana 10, podemos considerar que $\xi^{\mu}$ tiene una dependencia general con $G$, de modo que
+\begin{equation}
+\xi^{\mu} = \xi_{(1)}^{\mu} + \xi_{(2)}^{\mu} + \xi_{(3)}^{\mu} + \cdots.
+\end{equation}
+
+Luego, la ecuación \eqref{eq:gauge-2} nos queda
+\begin{equation}
+\frac{\partial x'^{\mu}}{\partial x^{\alpha}} = \delta^{\mu}_{\alpha} + \partial_{\alpha} \xi_{(1)}^{\mu} + \mathcal{O}(G^2). \label{eq:gauge-3}
+\end{equation}
+
+Para el jacobiano inverso, consideremos primero la siguiente expansión en potencias de $G$:
+\begin{equation}
+\frac{\partial x^{\alpha}}{\partial x'^{\nu}} = \left(\frac{\partial x^{\alpha}}{\partial x'^{\nu}}\right)_0 + \left(\frac{\partial x^{\alpha}}{\partial x'^{\nu}}\right)_1 + \mathcal{O}(G^2).
+\end{equation}
+
+Entonces, usando que el jacobiano por su inversa da la identidad, obtenemos
+\begin{align}
+\frac{\partial x'^{\mu}}{\partial x^{\alpha}} \frac{\partial x^{\alpha}}{\partial x'^{\nu}} &= \delta^{\mu}_{\nu}, \\
+\left[\delta^{\mu}_{\alpha} + \partial_{\alpha} \xi^{\mu}_{(1)} + \mathcal{O}(G^2)\right] \left[ \left(\frac{\partial x^{\alpha}}{\partial x'^{\nu}}\right)_0 + \left(\frac{\partial x^{\alpha}}{\partial x'^{\nu}}\right)_1 + \mathcal{O}(G^2) \right] &= \delta^{\mu}_{\nu}, \\
+\delta^{\mu}_{\alpha} \left(\frac{\partial x^{\alpha}}{\partial x'^{\nu}}\right)_0 + \left[ \partial_{\alpha} \xi^{\mu}_{(1)}  \left(\frac{\partial x^{\alpha}}{\partial x'^{\nu}}\right)_0 + \delta_{\alpha}^{\mu}  \left(\frac{\partial x^{\alpha}}{\partial x'^{\nu}}\right)_1 \right] + \mathcal{O}(G^2)  &= \delta^{\mu}_{\nu}, \\
+\left(\frac{\partial x^{\mu}}{\partial x'^{\nu}}\right)_0 + \left[  \partial_{\alpha} \xi^{\mu}_{(1)}  \left(\frac{\partial x^{\alpha}}{\partial x'^{\nu}}\right)_0 +  \left(\frac{\partial x^{\mu}}{\partial x'^{\nu}}\right)_1\right] + \mathcal{O}(G^2)  &= \delta^{\mu}_{\nu} .
+\end{align}
+
+Igualando los términos de orden cero en $G$, tenemos que
+\begin{equation}
+ \left(\frac{\partial x^{\mu}}{\partial x'^{\nu}}\right)_0  = \delta^{\mu}_{\nu}.
+\end{equation}
+
+Ahora, igualando los términos de orden uno en $G$ y usando la expresión encontrada para el término de orden cero, concluímos que
+\begin{equation}
+ \left(\frac{\partial x^{\mu}}{\partial x'^{\nu}}\right)_1 = - \delta^{\alpha}_{\nu} \partial_{\alpha} \xi^{\mu}_{(1)} = - \partial_{\nu} \xi^{\mu}_{(1)}.
+\end{equation}
+
+Por lo tanto, podemos escribir
+\begin{equation}
+\frac{\partial x^{\alpha}}{\partial x'^{\nu}} = \delta^{\alpha}_{\nu} - \partial_{\nu} \xi_{(1)}^{\alpha} + \mathcal{O}(G^2).\label{eq:gauge-4}
+\end{equation}
+
+Las componentes del tensor métrico en las nuevas coordenadas están dadas por
+\begin{equation}
+g'_{\mu\nu}(x'(P)) = \frac{\partial x^{\lambda}}{\partial x'^{\mu}}(P)\frac{\partial x^{\rho}}{\partial x'^{\nu}}(P) g_{\lambda\rho}(x(P)).
+\end{equation}
+
+Usando \eqref{eq:gauge-4}, a primer orden, obtenemos
+\begin{align}
+g'_{\mu\nu}(x'(P)) &= \frac{\partial x^{\lambda}}{\partial x'^{\mu}}(P)\frac{\partial x^{\rho}}{\partial x'^{\nu}}(P) g_{\lambda\rho}(x(P)) \nonumber \\
+&=  \left( \delta_{\mu}^{\lambda} - \partial_{\mu}\xi_{(1)}^{\lambda}(P) \right) \left( \delta_{\nu}^{\rho} - \partial_{\nu}\xi_{(1)}^{\rho}(P) \right) \left(\eta_{\lambda\rho} + h_{\lambda\rho}^{(1)}\right) + \mathcal{O}(G^2) \nonumber \\
+&= \delta_{\mu}^{\lambda} \delta_{\nu}^{\rho} \eta_{\lambda\rho} + \delta_{\mu}^{\lambda} \delta_{\nu}^{\rho} h_{\lambda\rho}^{(1)}   - \delta_{\mu}^{\lambda} \eta_{\lambda\rho} \partial_{\nu}\xi_{(1)}^{\rho}(P) - \delta_{\nu}^{\rho} \eta_{\lambda\rho} \partial_{\mu} \xi_{(1)}^{\lambda}(P) +  \mathcal{O}(G^2) \nonumber \\
+&= \eta_{\mu\nu} + h_{\mu\nu}^{(1)} - \eta_{\mu\rho} \partial_{\nu} \xi_{(1)}^{\rho}(P) - \eta_{\lambda\nu} \partial_{\mu} \xi^{\lambda}_{(1)}(P) + \mathcal{O}(G^2) \nonumber \\
+&= \eta_{\mu\nu} + h_{\mu\nu}^{(1)} - \partial_{\nu} \xi^{(1)}_{\mu}(P) -  \partial_{\mu} \xi_{\nu}^{(1)}(P) + \mathcal{O}(G^2) \nonumber \\
+&=: \eta_{\mu\nu} + h_{\mu\nu}^{'(1)}(P) + \mathcal{O}(G^2).
+\end{align}
+
+Por lo tanto, en las coordenadas $x^{'\mu}$ las perturbaciones métricas de primer orden $h_{\mu\nu}^{'(1)}$ están dadas por
+\begin{shaded}
+\begin{equation}
+h_{\mu\nu}^{'(1)} =  h_{\mu\nu}^{(1)} - \partial_{\nu} \xi^{(1)}_{\mu}(P) -  \partial_{\mu} \xi_{\nu}^{(1)}(P), \quad \xi_{\mu}^{(1)} := \eta_{\mu\nu} \xi_{(1)}^{\nu}. \label{eq:gauge-5}
+\end{equation}
+\end{shaded}
+
+En conclusión, el cambio de coordenadas \eqref{eq:gauge-1.5} transforma una métrica de la forma \eqref{eq:Gauge-1} a una métrica de la misma forma, pero con una pertubación $h_{\mu\nu}^{'(1)}$ distinta, pero relacionada a la original $h^{(1)}_{\mu\nu}$ por medio de \eqref{eq:gauge-5}.
+
+\subsubsection{Invarianza de gauge}
+
+La propiedad fundamental de las transformaciones de gauge \eqref{eq:gauge-1.5} y \eqref{eq:gauge-5} es que ellas dejan, a primer orden, el tensor de curvatura, y por consiguiente las ecuaciones linealizadas de Einstein, invariantes. En efecto, del documento de la semana 10 verificamos que
+\begin{equation}
+R^{\rho}_{\ \mu\nu\lambda} = R^{\rho}_{(1)\mu\nu\lambda}+ \mathcal{O}(G^2) = \frac{1}{2} \left(\partial_{\mu} \partial_{\nu} h_{(1)\lambda}^{\rho} -\partial_{\mu} \partial_{\lambda} h_{(1)\nu}^{\rho} + \partial_{\lambda} \partial^{\rho} h_{\mu\nu}^{(1)} - \partial_{\nu} \partial^{\rho} h_{\mu\lambda}^{(1)}  \right) + \mathcal{O}(G^2).
+\end{equation}
+Entonces, al bajar todos los índices,
+\begin{equation}
+R_{\sigma \mu\nu\lambda} = g_ {\rho\sigma} R^{\rho}_{\ \mu\nu\lambda} = \left(\eta_{\rho\sigma} + g^{(1)}_{\rho\sigma} + \mathcal{O}(G^2) \right) \left( R^{\rho}_{(1)\mu\nu\lambda}+ \mathcal{O}(G^2) \right).
+\end{equation}
+
+El término de orden uno en $G$ es
+\begin{align}
+R_{\sigma \mu\nu\lambda}^{(1)} &= \frac{1}{2} \eta_{\rho\sigma}  \left(\partial_{\mu} \partial_{\nu} h_{(1)\lambda}^{\rho} -\partial_{\mu} \partial_{\lambda} h_{(1)\nu}^{\rho} + \partial_{\lambda} \partial^{\rho} h_{\mu\nu}^{(1)} - \partial_{\nu} \partial^{\rho} h_{\mu\lambda}^{(1)}  \right) \nonumber \\
+&= \frac{1}{2} \left(\partial_{\mu} \partial_{\nu} h_{\sigma\lambda}^{(1)} - \partial_{\mu} \partial_{\lambda} h_{\sigma\nu}^{(1)} + \partial_{\lambda} \partial_{\sigma} h_{\mu\nu}^{(1)}- \partial_{\nu} \partial_{\sigma} h_{\mu\lambda}^{(1)}\right). \label{eq:gauge-6}
+\end{align}
+
+Si hacemos la transformación de coordenadas dada por \eqref{eq:gauge-1.5} y usamos las ecuaciones \eqref{eq:gauge-3} y \eqref{eq:gauge-4} para las derivadas parciales en las nuevas coordenadas $x'$ y de la perturbación de la métrica $h'_{\mu\nu}$ a primer orden, respectivamente, tenemos que
+\begin{align}
+\partial_{\nu}' h_{\sigma\lambda}^{'(1)} &= \frac{\partial x^{\beta}}{\partial x^{' \nu}}\partial_{\beta} h_{\sigma\lambda}^{'(1)} \nonumber \\
+&= \left( \delta_{\nu}^{\beta} - \partial_{\nu} \xi^{\beta}_{(1)}\right) \partial_{\beta} \left( h_{\sigma\lambda}^{(1)} - \partial_{\lambda} \xi^{(1)}_{\sigma}(P) -  \partial_{\sigma} \xi_{\lambda}^{(1)}(P) \right)  \nonumber\\
+&= \delta_{\nu}^{\beta} \partial_{\beta} h_{\sigma\lambda}^{(1)} - \delta_{\nu}^{\beta} \partial_{\beta} \partial_{\lambda} \xi^{(1)}_{\sigma}(P) - \delta_{\nu}^{\beta} \partial_{\beta} \partial_{\sigma} \xi_{\lambda}^{(1)}(P)  \nonumber \\
+&=  \partial_{\nu} h_{\sigma\lambda}^{(1)} - \partial_{\nu} \partial_{\lambda} \xi^{(1)}_{\sigma}(P) - \partial_{\nu} \partial_{\sigma} \xi_{\lambda}^{(1)}(P) .
+\end{align}
+
+Derivando con respecto a $x^{'\mu}$:
+\begin{align}
+\partial_{\mu} ' \partial_{\nu} ' h_{\sigma\lambda}^{'(1)} &= \frac{\partial x^{\beta}}{\partial x^{' \mu}} \partial_{\beta} \partial_{\nu} '  h_{\sigma\lambda}^{'(1)} \nonumber \\
+&= \left( \delta_{\mu}^{\beta} - \partial_{\mu} \xi^{\beta}_{(1)} \right) \partial_{\beta} \left( \partial_{\nu}h_{\sigma\lambda}^{(1)} - \partial_{\nu} \partial_{\lambda} \xi^{(1)}_{\sigma}(P) - \partial_{\nu}\partial_{\sigma} \xi_{\lambda}^{(1)}(P)   \right) \nonumber \\
+&=  \delta_{\mu}^{\beta} \partial_{\beta} \partial_{\nu} h_{\sigma\lambda}^{(1)}  - \delta_{\mu}^{\beta} \partial_{\beta}   \partial_{\nu}  \partial_{\lambda} \xi^{'(1)}_{\sigma}(P) -  \delta_{\mu}^{\beta}\partial_{\beta} \partial_{\nu} \partial_{\sigma} \xi_{\lambda}^{(1)}(P)  \nonumber \\
+&=  \partial_{\mu} \partial_{\nu} h_{\sigma\lambda}^{(1)} -  \partial_{\mu}  \partial_{\nu} \partial_{\lambda} \xi^{(1)}_{\sigma}(P) -  \partial_{\mu}  \partial_{\nu} \partial_{\sigma} \xi_{\lambda}^{(1)}(P). \label{eq:gauge-7}
+\end{align}
+
+Reemplazando \eqref{eq:gauge-7} en \eqref{eq:gauge-6}, pero para $R_{\sigma \mu\nu\lambda}^{'(1)}$, obtenemos que
+\begin{align}
+R_{\sigma \mu\nu\lambda}^{'(1)} &= \frac{1}{2} \left(\partial_{\mu} ' \partial_{\nu} ' h_{\sigma\lambda}^{'(1)} - \partial_{\mu} ' \partial_{\lambda} ' h_{\sigma\nu}^{'(1)} + \partial_{\lambda}' \partial_{\sigma} ' h_{\mu\nu}^{'(1)}- \partial_{\nu}' \partial_{\sigma} ' h_{\mu\lambda}^{'(1)}\right) \nonumber \\
+&=  \frac{1}{2} \left(\partial_{\mu} \partial_{\nu} h_{\sigma\lambda}^{(1)} -  \partial_{\mu} \partial_{\nu} \partial_{\lambda} \xi^{(1)}_{\sigma}(P) -  \partial_{\mu} \partial_{\nu} \partial_{\sigma} \xi_{\lambda}^{(1)}(P) \right. \nonumber\\
+&\qquad - \partial_{\mu} \partial_{\lambda} h_{\sigma\nu}^{(1)} + \partial_{\mu} \partial_{\lambda} \partial_{\nu} \xi^{(1)}_{\sigma}(P) +  \partial_{\mu} \partial_{\lambda} \partial_{\sigma} \xi_{\nu}^{(1)}(P) \nonumber \\
+&\qquad  + \partial_{\lambda} \partial_{\sigma} h_{\mu\nu}^{(1)} -  \partial_{\lambda} \partial_{\sigma} \partial_{\nu} \xi^{(1)}_{\mu}(P) -  \partial_{\lambda} \partial_{\sigma} \partial_{\mu} \xi_{\nu}^{(1)}(P)  \nonumber \\
+&\qquad \left. - \partial_{\nu} \partial_{\mu} h_{\sigma\lambda}^{(1)}  +  \partial_{\nu} \partial_{\sigma} \partial_{\lambda} \xi^{(1)}_{\mu}(P) + \partial_{\nu}  \partial_{\sigma} \partial_{\mu} \xi_{\lambda}^{(1)}(P)\right) \nonumber\\
+&=  \frac{1}{2} \left(\partial_{\mu} \partial_{\nu} h_{\sigma\lambda}^{(1)}   \textcolor{red}{- \partial_{\mu} \partial_{\nu} \partial_{\lambda} \xi^{(1)}_{\sigma}(P)}  \textcolor{blue}{- \partial_{\mu} \partial_{\nu} \partial_{\sigma} \xi_{\lambda}^{(1)}(P)} \right. \nonumber\\
+&\qquad - \partial_{\mu}\partial_{\lambda}h_{\sigma\nu}^{(1)} + \textcolor{red}{\partial_{\mu} \partial_{\nu} \partial_{\lambda}  \xi^{(1)}_{\sigma}(P)}    + \textcolor{orange}{ \partial_{\mu}\partial_{\lambda}\partial_{\sigma} \xi_{\nu}^{(1)}(P)} \nonumber \\
+&\qquad  + \partial_{\lambda}\partial_{\sigma}h_{\mu\nu}^{(1)}   \textcolor{green}{- \partial_{\lambda} \partial_{\sigma} \partial_{\nu} \xi^{(1)}_{\mu}(P)}   \textcolor{orange}{- \partial_{\mu}\partial_{\lambda}\partial_{\sigma} \xi_{\nu}^{(1)}(P)}  \nonumber \\
+&\qquad \left. - \partial_{\nu}\partial_{\mu}h_{\sigma\lambda}^{(1)} +   \textcolor{green}{ \partial_{\lambda} \partial_{\sigma} \partial_{\nu}  \xi^{(1)}_{\mu}(P)} +  \textcolor{blue}{\partial_{\mu} \partial_{\nu} \partial_{\sigma} \xi_{\lambda}^{(1)}(P)}\right) \nonumber\\
+&= \frac{1}{2} \left(\partial_{\mu} \partial_{\nu} h_{\sigma\lambda}^{(1)} - \partial_{\mu} \partial_{\lambda} h_{\sigma\nu}^{(1)} + \partial_{\lambda} \partial_{\sigma} h_{\mu\nu}^{(1)}- \partial_{\nu} \partial_{\sigma} h_{\mu\lambda}^{(1)}\right). 
+\end{align}
+
+Por lo tanto, se cumple que
+\begin{equation}
+R_{\sigma\mu\nu\lambda}^{'(1)} = R_{\sigma\mu\nu\lambda}^{(1)}. \label{eq:gauge-8}
+\end{equation}
+
+Por otro lado, el tensor de Ricci, el escalar de curvatura y el tensor de Einstien, en las nuevas coordenadas, están dados por 
+\begin{align}
+R_{\mu\nu}' &= R^{\rho}_{\mu\rho\nu} \nonumber \\
+&= g'^{\rho\sigma} R_{\sigma\mu\rho\nu} \nonumber \\
+&= \eta^{\rho\sigma} R_{\sigma\mu\rho\nu}^{'(1)} + \mathcal{O}(G^2), \\
+R' &= g'^{\mu\nu} R_{\mu\nu}'  \nonumber \\
+&= \eta^{\mu\nu} R_{\mu\nu}^{'(1)} + \mathcal{O}(G^2), \\
+G_{\mu\nu}' &= R_{\mu\nu} ' - \frac{1}{2} g_{\mu\nu} ' R'\nonumber\\
+&= R_{\mu\nu}^{'(1)} - \frac{1}{2} \eta_{\mu\nu} R^{'(1)} + + \mathcal{O}(G^2).
+\end{align}
+
+Usando la ecuación \eqref{eq:gauge-8}, se demuestra, a primer orden, que el tensor de Ricci, el escalar de curvatura y el tensor de Einstien son invariantes:
+\begin{align}
+R_{\mu\nu}^{'(1)} &= \eta^{\rho\sigma} R_{\sigma\mu\rho\nu}^{'(1)} =  \eta^{\rho\sigma} R_{\sigma\mu\rho\nu}^{(1)} = R_{\mu\nu}^{(1)}, \\
+R'^{(1)} &= \eta^{\mu\nu} R_{\mu\nu}^{'(1)} = \eta^{\mu\nu} R_{\mu\nu}^{(1)} = R^{(1)},   \\
+G_{\mu\nu}^{'(1)} &= R_{\mu\nu}^{'(1)} - \frac{1}{2} \eta_{\mu\nu} R^{'(1)} = R_{\mu\nu}^{(1)} - \frac{1}{2} \eta_{\mu\nu} R^{(1)} = G_{\mu\nu}^{(1)}.
+\end{align}
+
+\subsubsection{Gauge de Lorenz}
+
+Como el lado izquierdo de las ecuaciones de Einstein linealizadas,
+\colorlet{shadecolor}{red!20}
+\begin{shaded}
+\begin{equation}
+\square \bar{h}_{\mu\nu}^{(1)} + \eta_{\mu\nu} \partial^{\lambda}\partial^{\rho}\bar{h}_{\lambda\rho}^{(1)}- \partial_{\mu}\partial^{\lambda} \bar{h}_{\lambda \nu}^{(1)} - \partial_{\nu}\partial^{\lambda} \bar{h}_{\lambda\mu}^{(1)} = - \frac{16\pi G}{c^4} T_{\mu\nu}^{(0)}, \label{eq:Einstei-eq-first-order}
+\end{equation}
+\end{shaded}
+es invariante bajo la transformación \eqref{eq:gauge-1.5}, podemos usar esta libertad de gauge para seleccionar sistemas de coordenadas en los que las pertubaciones $\bar{h}_{\mu\nu}^{(1)}$ sean particularmente simples.
+
+Impondremos el \textbf{gauge de Lorenz}, definido por
+\colorlet{shadecolor}{green!20}
+\begin{shaded}
+\begin{equation}
+\partial^{\nu} \bar{h}_{\mu\nu}^{(1)} \stackrel{!}{=} 0. \label{eq:Gauge-Lorenz}
+\end{equation}
+\end{shaded}
+
+Este gauge siempre puede ser impuesto. Supongamos que tenemos un campo $\bar{h}_{\mu\nu}^{(1)}$ que no satisface el gauge de Lorenz. Entonces, podemos realizar una transformación de gauge \eqref{eq:gauge-5} tal que 
+\begin{align}
+\bar{h}_{\mu\nu}^{'(1)} &= h_{\mu\nu}^{'(1)} - \frac{1}{2}\eta_{\mu\nu} h^{'(1)} \nonumber \\
+&= h_{\mu\nu}^{'(1)} - \frac{1}{2}\eta_{\mu\nu} \eta^{\rho\sigma} h_{\rho\sigma}^{'(1)} \nonumber\\
+&= h_{\mu\nu}^{(1)} - \partial_{\mu} \xi_{\nu}^{(1)} - \partial_{\nu} \xi_{\mu}^{(1)} - \frac{1}{2}\eta_{\mu\nu} \eta^{\rho\sigma} \left(h_{\rho\sigma}^{(1)} - \partial_{\rho} \xi_{\sigma}^{(1)} - \partial_{\rho} \xi_{\sigma}^{(1)} \right) \nonumber \\
+&= h_{\mu\nu}^{(1)} - \partial_{\mu} \xi_{\nu}^{(1)} - \partial_{\nu} \xi_{\mu}^{(1)} - \frac{1}{2}\eta_{\mu\nu} \left(h^{(1)} - \partial_{\rho} \xi^{\rho}_{(1)} - \partial_{\rho} \xi^{\sigma}_{(1)} \right) \nonumber \\
+&= \left( h_{\mu\nu}^{(1)} - \frac{1}{2}\eta_{\mu\nu}h^{(1)} \right) - \partial_{\mu} \xi_{\nu}^{(1)} - \partial_{\nu} \xi_{\mu}^{(1)} + \eta_{\mu\nu} \partial_{\rho} \xi^{\rho}_{(1)} \nonumber \\
+&= \bar{h}_{\mu\nu}^{(1)}  - \partial_{\mu} \xi_{\nu}^{(1)} - \partial_{\nu} \xi_{\mu}^{(1)} + \eta_{\mu\nu} \partial_{\rho} \xi^{\rho}_{(1)}.
+\end{align}
+
+De este modo, podemos imponer que
+\begin{align}
+\partial^{'\nu} \bar{h}_{\mu\nu}^{'(1)} &= \eta^{\nu \sigma} \frac{\partial x^{\beta}}{\partial x^{'\sigma}} \partial_{\beta} \bar{h}_{\mu\nu}^{'(1)} \nonumber\\
+&= \eta^{\nu \sigma}  \left(\delta_{\nu}^{\beta} - \partial_{\nu} \xi_{(1)}^{\beta} \right) \partial_{\beta} \bar{h}_{\mu\nu}^{'(1)} + \mathcal{O}(G^2) \nonumber \\
+&=\eta^{\nu \sigma} \delta_{\nu}^{\beta} \partial_{\beta} \bar{h}_{\mu\nu}^{'(1)} + \mathcal{O}(G^2) \nonumber \\
+&\approx \partial_{\nu} \bar{h}_{\mu\nu}^{'(1)} \nonumber  \\
+&= \partial^{\nu} \left(\bar{h}_{\mu\nu}^{(1)}  - \partial_{\mu} \xi_{\nu}^{(1)} - \partial_{\nu} \xi_{\mu}^{(1)} + \eta_{\mu\nu} \partial_{\rho} \xi^{\rho}_{(1)} \right) \nonumber  \\
+&= \partial_{\nu} \bar{h}_{\mu\nu}^{(1)} -  \partial^{\nu} \partial_{\mu} \xi_{\nu}^{(1)}  - \partial^{\nu} \partial_{\nu} \xi_{\mu}^{(1)} + \eta_{\mu\nu} \partial^{\nu} \partial_{\rho} \xi^{\rho}_{(1)} \nonumber  \\
+&= \partial_{\nu} \bar{h}_{\mu\nu}^{(1)} \textcolor{red}{- \partial_{\mu} \partial_{\nu} \xi^{\nu}_{(1)}}  - \square \xi_{\mu}^{(1)} + \textcolor{red}{\partial_{\mu} \partial_{\rho} \xi^{\rho}_{(1)}} \nonumber  \\
+&=  \partial_{\nu} \bar{h}_{\mu\nu}^{(1)}- \square \xi_{\mu}^{(1)} \nonumber \\
+&\stackrel{!}{=} 0,
+\end{align}
+es decir, se necesita un campo $\xi_{\mu}^{(1)}$ tal que 
+\begin{equation}
+\square \xi_{\mu}^{(1)} = \partial^{\nu} \bar{h}_{\mu\nu}^{(1)}. \label{eq:wave-eq-gauge}
+\end{equation}
+
+Esta condición siempre puede ser satisfecha, ya que la ecuación de onda siempre tiene soluciones, dadas las condiciones de borde adecuadas.
+
+Consideremos ahora que disponemos de un campo $h_{\mu\nu}^{(1)}$ que satisface el gauge de Lorenz. Entonces existe aún una libertad residual, definida por aquellas transformaciones de gauge generadas por un vector $\xi_{\mu}^{(1)}$ que sea armónico, es decir, que satisfaga la ecuación de onda homogénea:
+\begin{equation}
+\square \xi_{\mu}^{(1)} = 0. \label{eq:gauge-8.5}
+\end{equation}
+
+En el gauge de Lorenz, las ecuaciones de Einstein linealizadas asumen la forma de una \textit{ecuación de onda inhomogénea}. Usando \eqref{eq:Einstei-eq-first-order} y \eqref{eq:Gauge-Lorenz}, encontramos que
+\begin{shaded}
+\begin{equation}
+\square \bar{h}_{\mu\nu}^{(1)} = - \frac{16\pi G}{c^4} T_{\mu\nu}^{(0)}, \quad \partial^{\nu} \bar{h}_{\mu\nu}^{(1)} = 0.
+\end{equation}
+\end{shaded}
+
+Por lo tanto, en el gauge de Lorenz, la perturbación de primer orden $\bar{h}_{\mu\nu}^{(1)}$ de la métrica satisface la ecuación de onda inhomogénea. En una región sin materia $\bar{h}_{\mu\nu}^{(1)}$ satisface la ecuación de onda homogénea, lo que implica que pueden existir soluciones propagantes, \textbf{cuya velocidad de propagación es la velocidad de la luz}.
+
+Las soluciones particulares correspondientes a campos retardados asintóticamente nulos son entonces de la forma
+\begin{equation}
+\bar{h}_{\mu\nu}^{(1)}(\vec{x},t) = - \frac{4G}{c^4} \int \frac{T_{\mu\nu}^{(0)}(\vec{x}\,', t - |\vec{x} - \vec{x}\,'|/c)}{|\vec{x} - \vec{x}\,'|} d^3x',
+\end{equation}
+o simplemente,
+\begin{shaded}
+\begin{equation}
+\bar{h}_{\mu\nu}^{(1)}(\vec{x},t) = -  \frac{4G}{c^4} \int \frac{T_{\mu\nu}^{(0)}(\vec{x}\,', t_{\text{ret}})}{|\vec{x} - \vec{x}\,'|} d^3x',
+\end{equation}
+\end{shaded}
+donde $t_{\text{ret}} =  t - |\vec{x} - \vec{x}\,'|/c$ es el \textit{tiempo restardado}. La métrica, incluyendo contribuciones hasta primer orden, puede ser obtenida entonces como
+\begin{shaded}
+\begin{equation}
+g_{\mu\nu} = \eta_{\mu\nu} + h_{\mu\nu}^{(1)} = \eta_{\mu\nu} + \bar{h}_{\mu\nu}^{(1)} - \frac{1}{2} \eta_{\mu\nu} \bar{h}^{(1)}.
+\end{equation}
+\end{shaded}
+
+\subsubsection{Gauge adicionales en el vacío}
+
+En regiones libres de fuentes, es decir, donde $T_{\mu\nu}^{(0)}= 0$, es posible elegir coordenadas tales que, adicionalmente a la condición de Lorenz \eqref{eq:Gauge-Lorenz}, se satisfaga
+\begin{shaded}
+\begin{equation}
+h^{(1)} = 0, \quad h_{0i}^{(1)} = 0.
+\end{equation}
+\end{shaded}
+
+En efecto, de \eqref{eq:gauge-5} se sigue que la transformación de la traza $h^{(1)}$ es de la forma siguiente:
+\begin{align}
+h'_{(1)} &= \eta^{\mu\nu} \left(  h_{\mu\nu}^{(1)} - \partial_{\nu} \xi^{(1)}_{\mu}(P) -  \partial_{\mu} \xi_{\nu}^{(1)}(P)\right) \nonumber \\
+&= \eta^{\mu\nu} h_{\mu\nu}^{(1)} - \eta^{\mu\nu}  \partial_{\nu} \xi^{(1)}_{\mu}(P) - \eta^{\mu\nu}  \partial_{\mu} \xi_{\nu}^{(1)}(P)  \nonumber \\
+&= h_{(1)} - \partial_{\nu} \xi^{\nu}_{(1)} - \partial_{\mu} \xi^{\mu}_{(1)}  \nonumber \\ 
+&= h_{(1)} - 2 \partial_{\mu} \xi_{(1)}^{\mu}.
+\end{align}
+
+Por lo tanto, si $h'_{(1)} \stackrel{!}{=} 0$, entonces
+\begin{equation}
+ 2 \partial_{\mu} \xi_{(1)}^{\mu} = h_{(1)}. \label{eq:gauge-9} 
+\end{equation}
+
+Similarmente, al considerar las componentes $\mu = 0$ y $\nu = i$, con $i = 1,2,3$, en \eqref{eq:gauge-5}, tenemos que
+\begin{equation}
+h_{0i}^{'(1)} =  h_{0i}^{(1)} - \partial_{i} \xi^{(1)}_{0} -  \partial_{0} \xi_{i}^{(1)}.
+\end{equation}
+
+Luego, si imponemos $h_{0i}^{'(1)} = 0$, encontramos la siguiente ecuación diferencial:
+\begin{equation}
+\partial_0 \xi_i^{(1)} + \partial_{i} \xi_0^{(1)} = h_{0i}^{(1)}. \label{eq:gauge-10} 
+\end{equation}
+
+Las ecuaciones \eqref{eq:gauge-9} y \eqref{eq:gauge-10} forman un conjunto de cuatro ecuaciones diferenciales parciales de primer orden para los cuatros campos $\xi_{(1)}^{\mu}$. Si aplicamos el operador de onda sobre \eqref{eq:gauge-9} y \eqref{eq:gauge-10}, obtenemos que 
+\begin{equation}
+2 \square \partial_{\mu} \xi^{\mu}_{(1)} = \square h_{(1)} \quad \Rightarrow \quad   2 \partial_{\mu} \square \xi^{\mu}_{(1)} = \square h_{(1)} 
+\end{equation}
+y 
+\begin{equation}
+\square \partial_0 \xi_i^{(1)} + \square \partial_{i} \xi_0^{(1)} = \square h_{0i}^{(1)} \quad \Rightarrow \quad  \partial_0 \square \xi_i^{(1)} +  \partial_{i} \square \xi_0^{(1)} = \square h_{0i}^{(1)} 
+\end{equation}
+A partir de estas condiciones, estas transformaciones adicionales preservan el gauge de Lorenz, es decir, se satisface \eqref{eq:gauge-8.5}, si necesariamente
+\begin{equation}
+\square h_{(1)} = 0 \quad \text{y} \quad \square h_{0i}^{(1)} = 0.
+\end{equation}
+
+Estas condiciones necesarias son satisfechas, de acuerdo a la ecuación de campo \eqref{eq:wave-eq-gauge}, en regiones libres de fuentes.
+
+\subsection{Similitud con Electrodinámica}
+
+El potencial escalar $\phi$ y el potencial vectorial $\vec{A}$ (electromagnéticos) son campos definidos de forma tal que los campos eléctrico y magnético satisfagan automáticamente las ecuaciones de Maxwell homogéneas:
+\begin{align}
+\vec{E} &= - \vec{\nabla} \phi - \frac{\partial \vec{A}}{\partial t},  \label{eq:electro-1} \\
+\vec{B} &= \vec{\nabla} \times \vec{A}.  \label{eq:electro-2}
+\end{align}
+
+Los potenciales no son funciones definidas unívocamente dada una configuración de campo electromagnético. De hecho, si realizamos la transformación de gauge:
+\begin{equation}
+\phi' = \phi + \frac{\partial\chi}{\partial t}, \quad \vec{A}\,' = \vec{A} - \vec{\nabla} \chi, \label{eq:electro-3}
+\end{equation}
+donde $\chi = \chi(\vec{x},t)$ es una función arbitraria del espaciotiempo, obtenemos que
+
+\begin{align}
+\vec{E}\,' &= - \vec{\nabla} \phi' - \frac{\partial \vec{A} \,'}{\partial t} \nonumber\\
+&= - \vec{\nabla} \phi - \vec{\nabla} \left(\frac{\partial\chi}{\partial t}\right) - \frac{\partial}{\partial t}\left[\vec{A} - \vec{\nabla} \chi\right] \nonumber\\
+&= - \vec{\nabla} \phi  - \frac{\partial \vec{A}}{\partial t}  - \frac{\partial}{\partial t} \vec{\nabla} \chi  + \frac{\partial}{\partial t} \vec{\nabla} \chi \nonumber\\  
+&=  - \vec{\nabla} \phi  - \frac{\partial \vec{A}}{\partial t}  \nonumber \\
+&= \vec{E}, \\
+\vec{B}\,' &= \vec{\nabla} \times \vec{A}\,' \nonumber \\
+&= \vec{\nabla} \times  \left( \vec{A} - \vec{\nabla} \chi \right)\nonumber \\
+&=\vec{\nabla} \times \vec{A} - \cancelto{0}{\vec{\nabla} \times  (\vec{\nabla} \chi)} \nonumber \\ 
+&= \vec{\nabla}\times \vec{A} \nonumber \\
+&=  \vec{B}.
+\end{align}
+
+En la formulación relativista, los potenciales electromagnéticos son componentes de un 4-potencial electromagnético, definido por
+\begin{equation}
+A_{\mu} := \left( \frac{\phi}{c}, - \vec{A} \right), \label{eq:electro-4}
+\end{equation}
+el cual es el análogo a la perturbación de primer orden $h_{\mu\nu}^{(1)}$ de la métrica.
+
+En términos de este 4-potencial, podemos definir el \textbf{tensor electromagnético} por
+\begin{equation}
+F_{\mu\nu} := \partial_{\mu} A_{\nu} - \partial_{\nu} A_{\mu}. \label{eq:electro-5}
+\end{equation}
+
+Las ecuaciones de Maxwell inhomogéneas se encuentran condensadas en la siguiente ecuación tensorial:
+\begin{equation}
+\partial_{\mu} F^{\mu\nu} = \mu_0 J^{\nu}, \label{eq:electro-6}
+\end{equation}
+donde $J^{\mu} = (c\rho, J^{i})$ es la 4-densidad de corriente, la cual es la fuente de los campos electromagnéticos como el tensor de energía-momentum para el campo gravitacional.
+
+En este caso, la transformación de gauge adopta la forma
+\begin{equation}
+A'_{\mu} = A_{\mu} + \partial_{\mu} \chi, \label{eq:electro-7}
+\end{equation}
+similar a la transformación de gauge \eqref{eq:electro-5} para $h_{\mu\nu}^{(1)}$.
+
+Bajo esta transformación, el tensor electromagnético $F_{\mu\nu}$ permanece invariante. En efecto,
+\begin{align}
+F_{\mu\nu}' &= \partial_{\mu} A'_{\nu} - \partial_{\nu} A'_{\mu} \nonumber\\
+&= \partial_{\mu}(A_{\nu} + \partial_{\nu} \chi) - \partial_{\nu}(A_{\mu} + \partial_{\mu}\chi) \nonumber\\
+&= \partial_{\mu} A_{\nu} - \partial_{\nu} A_{\mu} \nonumber\\
+&= F_{\mu\nu}. \label{eq:electro-8}
+\end{align}
+
+Si reemplazamos \eqref{eq:electro-5} en \eqref{eq:electro-6}, encontramos que 
+\begin{align}
+\partial_{\mu} \left( \partial^{\mu} A^{\nu}\right) - \partial_{\mu}\left(\partial^{\nu} A^{\mu} \right) &= \mu_0 J^{\nu}, \label{eq:electro-9}\\
+\square A^{\nu} - \partial^{\nu}\left(\partial_{\mu} A^{\mu} \right) &= \mu_0 J^{\nu}. \label{eq:electro-10}
+\end{align}
+
+Su análogo gravitacional son las ecuaciones de Einstein linealizadas \eqref{eq:Einstei-eq-first-order}.
+
+Aquí, podemos imponer el gauge de Lorenz 
+\begin{equation}
+\partial_{\mu} A^{\mu} \stackrel{!}{=} 0, \label{eq:electro-11}
+\end{equation}
+el cual puede siempre imponerse. En efecto, consideremos un 4-potencial $A^{\mu}$ que no satisface el gauge de Lorenz, si efectuamos una transformación de gauge \eqref{eq:electro-7} y tomamos la cuadri-divergencia:
+\begin{align}
+\partial_{\mu} A'^{\mu} &= \partial_{\mu} A^{\mu} + \partial_{\mu} \partial^{\mu} \chi \nonumber \\
+&= \partial_{\mu} A^{\mu} + \square \chi. \label{eq:electro-12}
+\end{align}
+Si imponemos que este nuevo 4-potencial satisface el gauge de Lorenz, la función de $\chi$ debe verificar que
+\begin{equation}
+\square \chi = - \partial_{\mu} A^{\mu}, \label{eq:electro-13}
+\end{equation}
+ésto es, $\chi$ debe ser solución de la ecuación de onda inhomogénea. Esta condición es similar a \eqref{eq:wave-eq-gauge}.
+
+Si el 4-potencial satisface el gauge de Lorenz, la ecuación diferencial que éste debe satisfacer se reduce a la ecuación de onda inhomogénea
+\begin{equation}
+\square A^{\nu} = \mu_0 J^{\nu}.
+\end{equation}
+\end{document}
